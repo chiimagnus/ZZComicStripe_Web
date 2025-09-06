@@ -1,5 +1,3 @@
-import './App.css'
-
 function App() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-white to-slate-100 dark:from-slate-900 dark:to-slate-950">
