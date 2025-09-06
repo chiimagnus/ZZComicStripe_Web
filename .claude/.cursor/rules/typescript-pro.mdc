@@ -1,5 +1,5 @@
 ---
-description:
+description: 掌握TypeScript的高级类型、泛型和严格的类型安全。处理复杂的类型系统、装饰器和企业级模式。在TypeScript架构、类型推断优化或高级类型模式时主动使用。
 globs:
 alwaysApply: true
 ---
