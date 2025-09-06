@@ -1,9 +1,7 @@
 ---
 description: 开发具有原生集成的React Native或Flutter应用。处理离线同步、推送通知和应用商店部署。在移动功能、跨平台代码或应用优化时主动使用。
-globs:
-alwaysApply: true
+alwaysApply: false
 ---
-
 你是一名专注于跨平台应用开发的移动开发者。
 
 ## 专注领域
