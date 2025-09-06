@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Raycast-like Hero | Superdesign</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: { inter: ['Inter', 'ui-sans-serif', 'system-ui'] },
+          },
+        },
+      }
+    </script>
+    <link rel="stylesheet" href="./raycast_theme_1.css" />
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.0.0/dist/flowbite.min.js" defer></script>
+  </head>
+  <body class="font-inter">
+    <div class="neon-frame">
+      <!-- inner gradient + stripes background panel -->
+      <div class="stripe-panel"></div>
+
+      <!-- Top navigation -->
+      <nav class="fixed left-1/2 top-6 z-20 w-[calc(100%-40px)] -translate-x-1/2 md:w-auto">
+        <div class="glass-capsule mx-auto flex items-center gap-4 rounded-2xl px-3 py-2 sm:px-4">
+          <div class="flex items-center gap-2 pr-2">
+            <div class="h-6 w-6 rounded-md bg-gradient-to-br from-rose-500 via-fuchsia-500 to-cyan-400"></div>
+            <span class="hidden text-sm font-semibold sm:inline">Raycast</span>
+          </div>
+
+          <ul class="hidden items-center gap-4 text-[13px] text-zinc-300 md:flex">
+            <li><a class="hover:text-white" href="#">Store</a></li>
+            <li><a class="hover:text-white" href="#">Pro</a></li>
+            <li><a class="hover:text-white" href="#">AI</a></li>
+            <li><a class="hover:text-white" href="#">iOS</a></li>
+            <li><a class="hover:text-white" href="#">Teams</a></li>
+            <li><a class="hover:text-white" href="#">Developers</a></li>
+            <li><a class="hover:text-white" href="#">Changelog</a></li>
+            <li><a class="hover:text-white" href="#">Blog</a></li>
+            <li><a class="hover:text-white" href="#">Pricing</a></li>
+          </ul>
+
+          <div class="ml-auto flex items-center gap-2">
+            <a href="#" class="btn-ghost hidden items-center gap-1 rounded-xl px-3 py-2 text-sm md:inline-flex">
+              <i data-lucide="log-in" class="h-4 w-4"></i>
+              Log in
+            </a>
+            <a href="#" class="btn-primary inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm">
+              <i data-lucide="download" class="h-4 w-4"></i>
+              Download
+            </a>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Hero content -->
+      <section class="relative z-10 mx-auto max-w-4xl px-6 pt-[200px] pb-[240px] text-center md:px-0">
+        <h1 class="heading-glow mx-auto text-5xl font-extrabold leading-[1.1] sm:text-6xl md:text-7xl">
+          Your shortcut to everything.
+        </h1>
+        <p class="mx-auto mt-5 max-w-2xl text-balance text-base text-zinc-300 sm:text-lg">
+          A collection of powerful productivity tools all within an extendable launcher. Fast, ergonomic and reliable.
+        </p>
+
+        <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
+          <a href="#" class="btn-primary inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm">
+            <i data-lucide="download" class="h-4 w-4"></i>
+            Download for Mac
+          </a>
+          <a href="#" class="btn-ghost inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm">
+            <i data-lucide="list-plus" class="h-4 w-4"></i>
+            Join Windows waitlist
+          </a>
+        </div>
+
+        <div class="version-note mt-3 flex items-center justify-center gap-3">
+          <span>v1.102.6</span>
+          <span>•</span>
+          <span>macOS 13+</span>
+          <span>•</span>
+          <span>Install via homebrew</span>
+        </div>
+
+        <div class="bottom-pill glass-capsule flex items-center gap-2 rounded-full px-3 py-2 text-sm">
+          <span class="hidden sm:inline">Introducing Raycast for iOS</span>
+          <span class="sm:hidden">Raycast for iOS</span>
+          <span class="opacity-60">|</span>
+          <a href="#" class="inline-flex items-center gap-1 text-zinc-200 hover:text-white">
+            Download now
+            <i data-lucide="arrow-right" class="h-4 w-4"></i>
+          </a>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      window.addEventListener('DOMContentLoaded', () => {
+        if (window.lucide) window.lucide.createIcons();
+      });
+    </script>
+  </body>
+  </html>
+
+
