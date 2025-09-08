@@ -207,3 +207,47 @@ h1 { letter-spacing: -0.02em !important; font-family: 'Merriweather', 'PingFang 
   background: linear-gradient(180deg, rgba(246,242,234,0.65) 0%, rgba(246,242,234,0.35) 40%, rgba(246,242,234,1) 100%);
 }
 
+/* =======================
+   水平翻页效果
+   ======================= */
+
+/* 水平页面容器 */
+.horizontal-page-container {
+  display: flex;
+  overflow-x: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  height: 100vh;
+}
+
+/* 页面样式 */
+.horizontal-page-container > section {
+  min-width: 100vw;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+/* 玻璃卡片样式 */
+.glass-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+  .horizontal-page-container {
+    flex-direction: column;
+    overflow-y: auto;
+    scroll-snap-type: y mandatory;
+    height: auto;
+  }
+  
+  .horizontal-page-container > section {
+    min-width: 100%;
+    min-height: 100vh;
+  }
+}
+

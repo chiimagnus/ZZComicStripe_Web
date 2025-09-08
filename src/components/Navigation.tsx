@@ -10,10 +10,10 @@ function Navigation({ onLoginClick }: NavigationProps) {
   const [isMobile, setIsMobile] = useState(false)
 
   const menuItems = [
-    { name: 'iOS', href: '#' },
-    { name: '团队介绍', href: '#' },
-    { name: '更新日志', href: '#' },
-    { name: '联系方式', href: '#' },
+    { name: 'iOS', href: '#ios' },
+    { name: '团队介绍', href: '#team' },
+    { name: '更新日志', href: '#changelog' },
+    { name: '联系方式', href: '#contact' },
   ]
 
   useEffect(() => {
@@ -73,6 +73,13 @@ function Navigation({ onLoginClick }: NavigationProps) {
                 className="hover:text-neutral-900 hover:font-semibold" 
                 href={item.href}
                 role="menuitem"
+                onClick={(e) => {
+                  e.preventDefault();
+                  const targetElement = document.querySelector(item.href);
+                  if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  }
+                }}
               >
                 {item.name}
               </a>
@@ -131,7 +138,14 @@ function Navigation({ onLoginClick }: NavigationProps) {
                 <a 
                   className="block py-2 px-3 rounded-lg hover:bg-neutral-100 hover:font-semibold text-neutral-700" 
                   href={item.href}
-                  onClick={() => setIsMenuOpen(false)}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setIsMenuOpen(false);
+                    const targetElement = document.querySelector(item.href);
+                    if (targetElement) {
+                      targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                  }}
                   role="menuitem"
                 >
                   {item.name}
