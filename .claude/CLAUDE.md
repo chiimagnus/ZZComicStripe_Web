@@ -13,7 +13,7 @@ This is a web application for "吱吱连环画" (ZZ Comic Stripe), a platform fo
 
 ## Project Structure
 - `src/` - Main source code
-  - `components/` - React components (Navigation, HeroSection)
+  - `components/` - React components (Navigation, HeroSection, IOSPage)
   - `styles/` - CSS files (theme.css)
 - `public/` - Static assets
 - `dist/` - Build output
