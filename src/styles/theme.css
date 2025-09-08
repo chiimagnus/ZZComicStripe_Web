@@ -13,6 +13,10 @@
   --accent-deep: #BFA88E; /* 深一点的奶油黄 */
   --text-contrast: #000000; /* 高对比度文本色 */
   --muted-contrast: #5A5249; /* 高对比度次要文本色 */
+  /* 品牌色（复古系） */
+  --brand-1: #855C24; /* 深金棕 */
+  --brand-2: #744F19; /* 深棕金 */
+  --brand-3: #C4AB8C; /* 沙米色 */
 }
 
 html, body { height: 100%; }
@@ -125,6 +129,12 @@ h1 { letter-spacing: -0.02em !important; font-family: 'Merriweather', serif !imp
 .text-high-contrast { color: var(--text-contrast) !important; }
 .text-muted-contrast { color: var(--muted-contrast) !important; }
 
+/* 复古品牌文字工具类 */
+.text-brand-1 { color: var(--brand-1) !important; }
+.text-brand-2 { color: var(--brand-2) !important; }
+.text-brand-3 { color: var(--brand-3) !important; }
+.brand-heading { color: var(--brand-2) !important; }
+
 /* 性能优化：减少重绘和回流 */
 .will-change-transform {
   will-change: transform;
@@ -143,4 +153,37 @@ h1 { letter-spacing: -0.02em !important; font-family: 'Merriweather', serif !imp
   src: url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700;800&display=swap');
 }
 
+
+/* =======================
+   动效与辅助工具类
+   ======================= */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translate3d(0, 12px, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+.fade-in-up { animation: fadeInUp 700ms ease-out 60ms both; }
+
+@keyframes slowZoom {
+  from { transform: scale(1); }
+  to { transform: scale(1.05); }
+}
+.slow-zoom { animation: slowZoom 18s ease-out both; transform-origin: center; }
+
+@keyframes floatY {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+  100% { transform: translateY(0); }
+}
+.float-y { animation: floatY 2400ms ease-in-out infinite; }
+
+@keyframes scrollBounce {
+  0%, 100% { transform: translateY(0); opacity: .85; }
+  50% { transform: translateY(6px); opacity: 1; }
+}
+.scroll-indicator { animation: scrollBounce 1600ms ease-in-out infinite; }
+
+/* 背景遮罩工具 */
+.hero-scrim {
+  background: linear-gradient(180deg, rgba(246,242,234,0.65) 0%, rgba(246,242,234,0.35) 40%, rgba(246,242,234,1) 100%);
+}
 
