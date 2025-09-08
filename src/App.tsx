@@ -31,8 +31,8 @@ function App(): JSX.Element {
         />
       </main>
       
-      {/* 页脚 */}
-      <Footer />
+      {/* 页脚 - 隐藏 */}
+      {/* <Footer /> */}
     </div>
   )
 }
