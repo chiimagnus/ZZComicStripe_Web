@@ -1,12 +1,11 @@
-import { LogIn, Download, Menu, X } from 'lucide-react'
+import { LogIn, Menu, X } from 'lucide-react'
 import { useState, useEffect } from 'react'
 
 interface NavigationProps {
   onLoginClick?: () => void
-  onDownloadClick?: () => void
 }
 
-function Navigation({ onLoginClick, onDownloadClick }: NavigationProps) {
+function Navigation({ onLoginClick }: NavigationProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
 
@@ -78,14 +77,10 @@ function Navigation({ onLoginClick, onDownloadClick }: NavigationProps) {
           <a
             href="#"
             className="btn-primary inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm"
-            onClick={(e) => {
-              e.preventDefault()
-              onDownloadClick?.()
-            }}
             role="button"
             tabIndex={0}
           >
-            <Download className="h-4 w-4" aria-hidden="true" />
+            <span className="text-2xl"></span>
             <span>下载</span>
           </a>
 

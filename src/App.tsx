@@ -7,18 +7,13 @@ function App(): JSX.Element {
     console.log('Login clicked')
   }
 
-  const handleDownloadClick = () => {
-    console.log('Download clicked')
-  }
-
-
   return (
     <div className="neon-frame">
       {/* 背景纸张面板 */}
       <div className="stripe-panel"></div>
 
       {/* 顶部导航 */}
-      <Navigation onLoginClick={handleLoginClick} onDownloadClick={handleDownloadClick} />
+      <Navigation onLoginClick={handleLoginClick} />
 
       {/* Hero 内容 */}
       <main>
