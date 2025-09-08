@@ -12,14 +12,6 @@ function App(): JSX.Element {
     console.log('Download clicked')
   }
 
-  const handleMacDownloadClick = () => {
-    console.log('Mac download clicked')
-  }
-
-  const handleWindowsWaitlistClick = () => {
-    console.log('Windows waitlist clicked')
-  }
-
   const handleiOSBetaClick = () => {
     console.log('iOS beta clicked')
   }
@@ -35,14 +27,12 @@ function App(): JSX.Element {
       {/* Hero 内容 */}
       <main className="flex-grow">
         <HeroSection
-          onMacDownloadClick={handleMacDownloadClick}
-          onWindowsWaitlistClick={handleWindowsWaitlistClick}
           oniOSBetaClick={handleiOSBetaClick}
         />
       </main>
       
       {/* 页脚 */}
-      <Footer oniOSBetaClick={handleiOSBetaClick} />
+      <Footer />
     </div>
   )
 }

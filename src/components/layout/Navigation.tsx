@@ -11,15 +11,10 @@ function Navigation({ onLoginClick, onDownloadClick }: NavigationProps) {
   const [isMobile, setIsMobile] = useState(false)
 
   const menuItems = [
-    { name: '商店', href: '#' },
-    { name: '专业版', href: '#' },
-    { name: 'AI', href: '#' },
     { name: 'iOS', href: '#' },
-    { name: '团队', href: '#' },
-    { name: '开发者', href: '#' },
+    { name: '团队介绍', href: '#' },
     { name: '更新日志', href: '#' },
-    { name: '博客', href: '#' },
-    { name: '定价', href: '#' },
+    { name: '联系方式', href: '#' },
   ]
 
   useEffect(() => {

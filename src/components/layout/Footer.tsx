@@ -56,24 +56,7 @@ function Footer({ oniOSBetaClick }: FooterProps) {
             <p>© {new Date().getFullYear()} 吱吱连环画. 保留所有权利。</p>
           </div>
           
-          <div className="flex items-center gap-2">
-            <span className="text-sm">iOS 版本内测中</span>
-            <span className="opacity-60">|</span>
-            <a
-              href="#"
-              className="inline-flex items-center gap-1 text-neutral-800 hover:text-neutral-900 transition-colors"
-              onClick={(e) => {
-                e.preventDefault()
-                oniOSBetaClick?.()
-              }}
-              role="button"
-              tabIndex={0}
-            >
-              <span>申请体验</span>
-              <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </a>
-          </div>
-        </div>
+                  </div>
       </div>
     </footer>
   )
