@@ -1,17 +1,9 @@
-import { ArrowRight } from 'lucide-react'
+// No imports needed
 
 interface HeroSectionProps {
-  oniOSBetaClick?: () => void
 }
 
-function HeroSection({ oniOSBetaClick }: HeroSectionProps) {
-  // Handle keyboard events for buttons
-  const handleKeyDown = (e: React.KeyboardEvent, callback?: () => void) => {
-    if ((e.key === 'Enter' || e.key === ' ') && callback) {
-      e.preventDefault()
-      callback()
-    }
-  }
+function HeroSection({}: HeroSectionProps) {
 
   return (
     <section className="relative z-10 mx-auto max-w-4xl px-6 pt-[200px] pb-[240px] text-center md:px-0" aria-labelledby="hero-heading">
@@ -26,26 +18,7 @@ function HeroSection({ oniOSBetaClick }: HeroSectionProps) {
       </p>
 
 
-      <div className="bottom-pill glass-capsule flex flex-wrap items-center justify-center gap-2 rounded-full px-3 py-2 text-sm">
-        <span className="hidden sm:inline">iOS 版本内测中</span>
-        <span className="sm:hidden">iOS 内测</span>
-        <span className="opacity-60" aria-hidden="true">|</span>
-        <a
-          href="#"
-          className="inline-flex items-center gap-1 text-neutral-800 hover:text-neutral-900"
-          onClick={(e) => {
-            e.preventDefault()
-            oniOSBetaClick?.()
-          }}
-          role="button"
-          tabIndex={0}
-          onKeyDown={(e) => handleKeyDown(e, oniOSBetaClick)}
-        >
-          <span>申请体验</span>
-          <ArrowRight className="h-4 w-4" aria-hidden="true" />
-        </a>
-      </div>
-    </section>
+          </section>
   )
 }
 
