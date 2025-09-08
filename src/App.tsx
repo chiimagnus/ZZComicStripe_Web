@@ -1,6 +1,6 @@
 import type { JSX } from 'react'
-import Navigation from './components/layout/Navigation'
-import HeroSection from './components/layout/HeroSection'
+import Navigation from './components/Navigation'
+import HeroSection from './components/HeroSection'
 
 function App(): JSX.Element {
   const handleLoginClick = () => {
