@@ -19,12 +19,6 @@ function HeroSection({}: HeroSectionProps) {
       <h1 id="hero-heading" className="heading-glow mx-auto text-5xl font-extrabold leading-[1.1] sm:text-6xl md:text-7xl">
         用连环画，重讲你的故事
       </h1>
-      <p className="mx-auto mt-5 max-w-2xl text-balance text-base text-muted-contrast sm:text-lg">
-        让沉睡在数字角落的珍贵回忆， 
-        化作一页页温暖的连环画。
-        我们用AI唤醒影像中的情感，
-        让你的故事以全新的方式被讲述、被珍藏、被分享。
-      </p>
     </section>
   )
 }
