@@ -80,7 +80,7 @@ function Navigation({ onLoginClick }: NavigationProps) {
             role="button"
             tabIndex={0}
           >
-            <span className="text-2xl"></span>
+            <span className="text-xl leading-none"></span>
             <span>下载</span>
           </a>
 
