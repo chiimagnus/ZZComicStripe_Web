@@ -68,11 +68,14 @@ export function BookFlip({
         style={{ width: '100%', height: '100%' }}
         ref={ref}
       >
-        {pages.map(({ id, element }) => (
-          <Page key={id} id={id}>
+        {pages.flatMap(({ id, element }) => [
+          <Page key={`${id}-L`} id={`${id}-left`}>
             {element}
-          </Page>
-        ))}
+          </Page>,
+          <Page key={`${id}-R`} id={`${id}-right`}>
+            {element}
+          </Page>,
+        ])}
       </HTMLFlipBook>
     </div>
   )

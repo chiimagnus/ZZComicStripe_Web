@@ -13,12 +13,13 @@ function App(): JSX.Element {
     console.log('Login clicked')
   }
 
+  // 每个逻辑页面映射到双页（左右相同内容），因此索引为偶数页
   const idToIndex = {
     home: 0,
-    ios: 1,
-    team: 2,
-    changelog: 3,
-    contact: 4,
+    ios: 2,
+    team: 4,
+    changelog: 6,
+    contact: 8,
   } as const
 
   return (
