@@ -1,5 +1,5 @@
 import type { CSSProperties, JSX, ReactNode } from 'react'
-import { forwardRef, useEffect, useMemo, useRef } from 'react'
+import { forwardRef, useEffect, useMemo, useRef, useState } from 'react'
 import HTMLFlipBook from 'react-pageflip'
 import { useFlipBook } from '../contexts/FlipBookContext'
 
@@ -51,26 +51,35 @@ export function BookFlip({
 }): JSX.Element {
   const { register } = useFlipBook()
   const ref = useRef<any>(null)
+  const [viewport, setViewport] = useState<{ w: number; h: number }>({ w: 0, h: 0 })
 
   useEffect(() => {
     register(ref.current)
   }, [register])
 
+  // 跟随视口尺寸，确保书页几何铺满整个浏览器
+  useEffect(() => {
+    const update = () => setViewport({ w: window.innerWidth, h: window.innerHeight })
+    update()
+    window.addEventListener('resize', update)
+    return () => window.removeEventListener('resize', update)
+  }, [])
+
   const sizeProps = useMemo(() => ({
-    // IFlipSetting 全量必填
+    // 固定模式：每页宽度=视口宽度的一半，高度=视口高度
     startPage: 0,
-    size: 'stretch' as const,
-    width: 700,
-    height: 900,
-    minWidth: 320,
-    maxWidth: 1400,
-    minHeight: 400,
-    maxHeight: 1600,
+    size: 'fixed' as const,
+    width: Math.max(320, Math.floor(viewport.w / 2)),
+    height: Math.max(320, viewport.h),
+    minWidth: Math.max(320, Math.floor(viewport.w / 2)),
+    maxWidth: Math.max(320, Math.floor(viewport.w / 2)),
+    minHeight: Math.max(320, viewport.h),
+    maxHeight: Math.max(320, viewport.h),
     drawShadow: true,
     flippingTime: 800,
     usePortrait: true,
     startZIndex: 0,
-    autoSize: true,
+    autoSize: false,
     maxShadowOpacity: 0.4,
     showCover: false,
     mobileScrollSupport: true,
@@ -79,10 +88,14 @@ export function BookFlip({
     swipeDistance: 30,
     showPageCorners: true,
     disableFlipByClick: false,
-  }), [])
+  }), [viewport.w, viewport.h])
+
+  if (!viewport.w || !viewport.h) {
+    return <div style={{ position: 'fixed', inset: 0 }} />
+  }
 
   return (
-    <div style={{ position: 'relative', width: '100%', height: '100svh' }}>
+    <div style={{ position: 'fixed', inset: 0, width: '100vw', height: '100vh', zIndex: 0 }}>
       <HTMLFlipBook
         {...sizeProps}
         className="zz-bookflip"
