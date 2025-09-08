@@ -1,10 +1,9 @@
-import { ArrowRight } from 'lucide-react'
+// No imports needed
 
 interface FooterProps {
-  oniOSBetaClick?: () => void
 }
 
-function Footer({ oniOSBetaClick }: FooterProps) {
+function Footer({}: FooterProps) {
 
   return (
     <footer className="w-full mt-auto py-8 px-4" role="contentinfo">
@@ -23,30 +22,19 @@ function Footer({ oniOSBetaClick }: FooterProps) {
           <div>
             <h3 className="font-semibold mb-4">产品</h3>
             <ul className="space-y-2 text-sm">
-              <li><a href="#" className="text-muted-contrast hover:text-neutral-900 transition-colors">功能</a></li>
-              <li><a href="#" className="text-muted-contrast hover:text-neutral-900 transition-colors">专业版</a></li>
-              <li><a href="#" className="text-muted-contrast hover:text-neutral-900 transition-colors">定价</a></li>
-              <li><a href="#" className="text-muted-contrast hover:text-neutral-900 transition-colors">下载</a></li>
+              <li><a href="#" className="text-muted-contrast hover:text-neutral-900 transition-colors">iOS商店</a></li>
+              <li><a href="#" className="text-muted-contrast hover:text-neutral-900 transition-colors">团队介绍</a></li>
+              <li><a href="#" className="text-muted-contrast hover:text-neutral-900 transition-colors">更新日志</a></li>
+              <li><a href="#" className="text-muted-contrast hover:text-neutral-900 transition-colors">小红书</a></li>
             </ul>
           </div>
 
           <div>
-            <h3 className="font-semibold mb-4">资源</h3>
+            <h3 className="font-semibold mb-4">支持</h3>
             <ul className="space-y-2 text-sm">
-              <li><a href="#" className="text-muted-contrast hover:text-neutral-900 transition-colors">文档</a></li>
-              <li><a href="#" className="text-muted-contrast hover:text-neutral-900 transition-colors">教程</a></li>
-              <li><a href="#" className="text-muted-contrast hover:text-neutral-900 transition-colors">博客</a></li>
-              <li><a href="#" className="text-muted-contrast hover:text-neutral-900 transition-colors">社区</a></li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="font-semibold mb-4">公司</h3>
-            <ul className="space-y-2 text-sm">
+              <li><a href="#" className="text-muted-contrast hover:text-neutral-900 transition-colors">联系方式</a></li>
               <li><a href="#" className="text-muted-contrast hover:text-neutral-900 transition-colors">关于</a></li>
-              <li><a href="#" className="text-muted-contrast hover:text-neutral-900 transition-colors">团队</a></li>
               <li><a href="#" className="text-muted-contrast hover:text-neutral-900 transition-colors">工作机会</a></li>
-              <li><a href="#" className="text-muted-contrast hover:text-neutral-900 transition-colors">联系</a></li>
             </ul>
           </div>
         </div>
@@ -55,8 +43,7 @@ function Footer({ oniOSBetaClick }: FooterProps) {
           <div className="text-sm text-muted-contrast mb-4 md:mb-0">
             <p>© {new Date().getFullYear()} 吱吱连环画. 保留所有权利。</p>
           </div>
-          
-                  </div>
+        </div>
       </div>
     </footer>
   )
