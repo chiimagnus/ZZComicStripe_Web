@@ -17,7 +17,8 @@ function HeroSection({}: HeroSectionProps) {
           alt="背景：连环画风格主视觉"
           className="h-full w-full object-cover pointer-events-none select-none slow-zoom will-change-transform"
           loading="eager"
-          draggable="false"
+          draggable={false}
+          onDragStart={(e) => e.preventDefault()}
         />
       </div>
 

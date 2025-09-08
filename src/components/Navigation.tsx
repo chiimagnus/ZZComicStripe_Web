@@ -41,7 +41,13 @@ function Navigation({ onLoginClick }: NavigationProps) {
     <nav className="fixed left-1/2 top-6 z-20 w-[calc(100%-40px)] -translate-x-1/2 md:w-auto" aria-label="主导航">
       <div className="glass-capsule mx-auto flex items-center gap-4 rounded-2xl px-3 py-2 sm:px-4">
         <div className="flex items-center gap-2 pr-2">
-          <div className="h-6 w-6 rounded-md" style={{ background: '#CEBEA8' }} role="img" aria-label="吱吱连环画 Logo" />
+          <img
+            src="/ZZComicStripe_Web/icon.png"
+            alt="吱吱连环画 Logo"
+            className="h-6 w-6 rounded-md object-cover"
+            draggable={false}
+            onDragStart={(e) => e.preventDefault()}
+          />
           <span className="hidden text-sm font-semibold sm:inline">吱吱连环画</span>
         </div>
 
