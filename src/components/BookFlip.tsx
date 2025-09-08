@@ -3,24 +3,45 @@ import { forwardRef, useEffect, useMemo, useRef } from 'react'
 import HTMLFlipBook from 'react-pageflip'
 import { useFlipBook } from '../contexts/FlipBookContext'
 
-interface PageProps {
+interface PageHalfProps {
   id: string
+  side: 'left' | 'right'
   children: ReactNode
 }
 
-const Page = forwardRef<HTMLDivElement, PageProps>(({ id, children }, ref) => {
+const PageHalf = forwardRef<HTMLDivElement, PageHalfProps>(({ id, side, children }, ref) => {
+  const translateX = side === 'left' ? '0%' : '-50%'
   return (
     <div ref={ref as any} data-density="soft" id={id} style={pageStyle as CSSProperties}>
-      {children}
+      <div style={halfViewportStyle as CSSProperties}>
+        <div style={{ ...spreadStyle, transform: `translateX(${translateX})` } as CSSProperties}>
+          {children}
+        </div>
+      </div>
     </div>
   )
 })
-Page.displayName = 'Page'
+PageHalf.displayName = 'PageHalf'
 
 const pageStyle: Partial<CSSProperties> = {
   width: '100%',
   height: '100%',
   background: 'transparent',
+}
+
+const halfViewportStyle: Partial<CSSProperties> = {
+  position: 'relative',
+  overflow: 'hidden',
+  width: '100%',
+  height: '100%',
+}
+
+const spreadStyle: Partial<CSSProperties> = {
+  position: 'absolute',
+  left: 0,
+  top: 0,
+  width: '200%',
+  height: '100%',
 }
 
 export function BookFlip({
@@ -69,12 +90,12 @@ export function BookFlip({
         ref={ref}
       >
         {pages.flatMap(({ id, element }) => [
-          <Page key={`${id}-L`} id={`${id}-left`}>
+          <PageHalf key={`${id}-L`} id={`${id}-left`} side="left">
             {element}
-          </Page>,
-          <Page key={`${id}-R`} id={`${id}-right`}>
+          </PageHalf>,
+          <PageHalf key={`${id}-R`} id={`${id}-right`} side="right">
             {element}
-          </Page>,
+          </PageHalf>,
         ])}
       </HTMLFlipBook>
     </div>
