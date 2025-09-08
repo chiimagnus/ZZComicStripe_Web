@@ -11,10 +11,11 @@ interface PageHalfProps {
 
 const PageHalf = forwardRef<HTMLDivElement, PageHalfProps>(({ id, side, children }, ref) => {
   const translateX = side === 'left' ? '0%' : '-50%'
+  const spreadWidth = '200%'
   return (
     <div ref={ref as any} data-density="soft" id={id} style={pageStyle as CSSProperties}>
       <div style={halfViewportStyle as CSSProperties}>
-        <div style={{ ...spreadStyle, transform: `translateX(${translateX})` } as CSSProperties}>
+        <div style={{ ...spreadStyle, width: spreadWidth, transform: `translateX(${translateX})` } as CSSProperties}>
           {children}
         </div>
       </div>
@@ -65,30 +66,34 @@ export function BookFlip({
     return () => window.removeEventListener('resize', update)
   }, [])
 
-  const sizeProps = useMemo(() => ({
-    // 固定模式：每页宽度=视口宽度的一半，高度=视口高度
-    startPage: 0,
-    size: 'fixed' as const,
-    width: Math.max(320, Math.floor(viewport.w / 2)),
-    height: Math.max(320, viewport.h),
-    minWidth: Math.max(320, Math.floor(viewport.w / 2)),
-    maxWidth: Math.max(320, Math.floor(viewport.w / 2)),
-    minHeight: Math.max(320, viewport.h),
-    maxHeight: Math.max(320, viewport.h),
-    drawShadow: true,
-    flippingTime: 800,
-    usePortrait: true,
-    startZIndex: 0,
-    autoSize: false,
-    maxShadowOpacity: 0.4,
-    showCover: false,
-    mobileScrollSupport: true,
-    clickEventForward: true,
-    useMouseEvents: true,
-    swipeDistance: 30,
-    showPageCorners: true,
-    disableFlipByClick: false,
-  }), [viewport.w, viewport.h])
+  const sizeProps = useMemo(() => {
+    const pageWidth = Math.max(320, Math.floor(viewport.w / 2))
+    const pageHeight = Math.max(320, viewport.h)
+    return {
+      // 固定模式：每页宽=视口宽/2，页高=视口高，铺满角到角
+      startPage: 0,
+      size: 'fixed' as const,
+      width: pageWidth,
+      height: pageHeight,
+      minWidth: pageWidth,
+      maxWidth: pageWidth,
+      minHeight: pageHeight,
+      maxHeight: pageHeight,
+      drawShadow: true,
+      flippingTime: 800,
+      usePortrait: false,
+      startZIndex: 0,
+      autoSize: false,
+      maxShadowOpacity: 0.4,
+      showCover: false,
+      mobileScrollSupport: true,
+      clickEventForward: true,
+      useMouseEvents: true,
+      swipeDistance: 30,
+      showPageCorners: true,
+      disableFlipByClick: false,
+    }
+  }, [viewport.w, viewport.h])
 
   if (!viewport.w || !viewport.h) {
     return <div style={{ position: 'fixed', inset: 0 }} />

@@ -7,6 +7,7 @@ import ChangelogPage from './components/ChangelogPage'
 import ContactPage from './components/ContactPage'
 import { FlipBookProvider } from './contexts/FlipBookContext'
 import { BookFlip } from './components/BookFlip'
+import { useEffect, useState } from 'react'
 
 function App(): JSX.Element {
   const handleLoginClick = () => {
@@ -22,24 +23,55 @@ function App(): JSX.Element {
     contact: 8,
   } as const
 
+  const [isMobile, setIsMobile] = useState(false)
+  useEffect(() => {
+    const fn = () => setIsMobile(window.innerWidth < 768)
+    fn()
+    window.addEventListener('resize', fn)
+    return () => window.removeEventListener('resize', fn)
+  }, [])
+
   return (
     <div className="neon-frame">
       {/* 背景纸张面板 */}
       <div className="stripe-panel"></div>
 
       {/* 顶部导航 + 翻页容器 */}
-      <FlipBookProvider idToIndex={idToIndex}>
-        <Navigation onLoginClick={handleLoginClick} />
-        <BookFlip
-          pages={[
-            { id: 'home', element: <HeroSection /> },
-            { id: 'ios', element: <IOSPage /> },
-            { id: 'team', element: <TeamPage /> },
-            { id: 'changelog', element: <ChangelogPage /> },
-            { id: 'contact', element: <ContactPage /> },
-          ]}
-        />
-      </FlipBookProvider>
+      {isMobile ? (
+        <>
+          <Navigation onLoginClick={handleLoginClick} />
+          <main>
+            <section id="home">
+              <HeroSection />
+            </section>
+            <section id="ios">
+              <IOSPage />
+            </section>
+            <section id="team">
+              <TeamPage />
+            </section>
+            <section id="changelog">
+              <ChangelogPage />
+            </section>
+            <section id="contact">
+              <ContactPage />
+            </section>
+          </main>
+        </>
+      ) : (
+        <FlipBookProvider idToIndex={idToIndex}>
+          <Navigation onLoginClick={handleLoginClick} />
+          <BookFlip
+            pages={[
+              { id: 'home', element: <HeroSection /> },
+              { id: 'ios', element: <IOSPage /> },
+              { id: 'team', element: <TeamPage /> },
+              { id: 'changelog', element: <ChangelogPage /> },
+              { id: 'contact', element: <ContactPage /> },
+            ]}
+          />
+        </FlipBookProvider>
+      )}
       
       {/* 页脚 - 隐藏 */}
       {/* <Footer /> */}
