@@ -30,6 +30,9 @@ This is a web application for "吱吱连环画" (ZZ Comic Stripe), a platform fo
 - Responsive design with mobile-first approach
 - Performance optimizations including CSS code splitting and manual chunking
 - Accessibility features implemented (ARIA labels, semantic HTML)
+- Implements a book flip effect using react-pageflip library
+- Uses context API for state management of the flip book functionality
+- Navigation uses smooth scrolling that triggers page flips instead of traditional scrolling
 
 ## Deployment
 - Base path configured as `/ZZComicStripe_Web/`
