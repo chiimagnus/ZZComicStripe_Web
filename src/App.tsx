@@ -1,6 +1,7 @@
 import type { JSX } from 'react'
 import Navigation from './components/layout/Navigation'
 import HeroSection from './components/layout/HeroSection'
+import Footer from './components/layout/Footer'
 
 function App(): JSX.Element {
   const handleLoginClick = () => {
@@ -24,7 +25,7 @@ function App(): JSX.Element {
   }
 
   return (
-    <div className="neon-frame">
+    <div className="neon-frame min-h-screen flex flex-col">
       {/* 背景纸张面板 */}
       <div className="stripe-panel"></div>
 
@@ -32,11 +33,16 @@ function App(): JSX.Element {
       <Navigation onLoginClick={handleLoginClick} onDownloadClick={handleDownloadClick} />
 
       {/* Hero 内容 */}
-      <HeroSection
-        onMacDownloadClick={handleMacDownloadClick}
-        onWindowsWaitlistClick={handleWindowsWaitlistClick}
-        oniOSBetaClick={handleiOSBetaClick}
-      />
+      <main className="flex-grow">
+        <HeroSection
+          onMacDownloadClick={handleMacDownloadClick}
+          onWindowsWaitlistClick={handleWindowsWaitlistClick}
+          oniOSBetaClick={handleiOSBetaClick}
+        />
+      </main>
+      
+      {/* 页脚 */}
+      <Footer oniOSBetaClick={handleiOSBetaClick} />
     </div>
   )
 }
