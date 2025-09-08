@@ -56,7 +56,7 @@ function Navigation({ onLoginClick }: NavigationProps) {
           {menuItems.map((item) => (
             <li key={item.name} role="none">
               <a 
-                className="hover:text-neutral-900" 
+                className="hover:text-neutral-900 hover:font-semibold" 
                 href={item.href}
                 role="menuitem"
               >
@@ -115,7 +115,7 @@ function Navigation({ onLoginClick }: NavigationProps) {
             {menuItems.map((item) => (
               <li key={item.name} role="none">
                 <a 
-                  className="block py-2 px-3 rounded-lg hover:bg-neutral-100 text-neutral-700" 
+                  className="block py-2 px-3 rounded-lg hover:bg-neutral-100 hover:font-semibold text-neutral-700" 
                   href={item.href}
                   onClick={() => setIsMenuOpen(false)}
                   role="menuitem"
