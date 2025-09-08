@@ -9,7 +9,7 @@ function HeroSection({}: HeroSectionProps) {
     <section className="relative z-10 mx-auto max-w-4xl px-6 pt-[200px] pb-[240px] text-center md:px-0" aria-labelledby="hero-heading">
       <div className="mx-auto mb-12 w-full max-w-[600px] md:mb-14">
         <img 
-          src="/mainview.jpg" 
+          src="/ZZComicStripe_Web/mainview.jpg" 
           alt="用连环画重讲故事" 
           className="mx-auto w-[80%] rounded-xl shadow-xl md:w-full pointer-events-none select-none"
           loading="eager"
