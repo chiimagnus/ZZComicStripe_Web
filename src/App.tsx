@@ -5,51 +5,40 @@ import IOSPage from './components/IOSPage'
 import TeamPage from './components/TeamPage'
 import ChangelogPage from './components/ChangelogPage'
 import ContactPage from './components/ContactPage'
-import { useHorizontalScroll } from './hooks/useHorizontalScroll'
+import { FlipBookProvider } from './contexts/FlipBookContext'
+import { BookFlip } from './components/BookFlip'
 
 function App(): JSX.Element {
   const handleLoginClick = () => {
     console.log('Login clicked')
   }
 
-  // 使用水平滚动hook
-  useHorizontalScroll()
+  const idToIndex = {
+    home: 0,
+    ios: 1,
+    team: 2,
+    changelog: 3,
+    contact: 4,
+  } as const
 
   return (
     <div className="neon-frame">
       {/* 背景纸张面板 */}
       <div className="stripe-panel"></div>
 
-      {/* 顶部导航 */}
-      <Navigation onLoginClick={handleLoginClick} />
-
-      {/* 水平翻页容器 */}
-      <div className="horizontal-page-container" id="horizontal-container">
-        {/* Hero 内容 */}
-        <section id="home">
-          <HeroSection />
-        </section>
-        
-        {/* iOS 页面 */}
-        <section id="ios">
-          <IOSPage />
-        </section>
-        
-        {/* 团队介绍页面 */}
-        <section id="team">
-          <TeamPage />
-        </section>
-        
-        {/* 更新日志页面 */}
-        <section id="changelog">
-          <ChangelogPage />
-        </section>
-        
-        {/* 联系方式页面 */}
-        <section id="contact">
-          <ContactPage />
-        </section>
-      </div>
+      {/* 顶部导航 + 翻页容器 */}
+      <FlipBookProvider idToIndex={idToIndex}>
+        <Navigation onLoginClick={handleLoginClick} />
+        <BookFlip
+          pages={[
+            { id: 'home', element: <HeroSection /> },
+            { id: 'ios', element: <IOSPage /> },
+            { id: 'team', element: <TeamPage /> },
+            { id: 'changelog', element: <ChangelogPage /> },
+            { id: 'contact', element: <ContactPage /> },
+          ]}
+        />
+      </FlipBookProvider>
       
       {/* 页脚 - 隐藏 */}
       {/* <Footer /> */}
