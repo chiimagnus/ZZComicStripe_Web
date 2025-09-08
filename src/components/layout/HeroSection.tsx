@@ -18,10 +18,10 @@ function HeroSection({ onMacDownloadClick, onWindowsWaitlistClick, oniOSBetaClic
   return (
     <section className="relative z-10 mx-auto max-w-4xl px-6 pt-[200px] pb-[240px] text-center md:px-0" aria-labelledby="hero-heading">
       <h1 id="hero-heading" className="heading-glow mx-auto text-5xl font-extrabold leading-[1.1] sm:text-6xl md:text-7xl">
-        你的连环画捷径。
+        用连环画，重讲你的故事
       </h1>
       <p className="mx-auto mt-5 max-w-2xl text-balance text-base text-muted-contrast sm:text-lg">
-        把创作的工具，放进一个温柔而轻快的启动器。简单、顺手、可靠。
+        让沉睡在数字角落的珍贵回忆，化作一页页温暖的连环画。我们用AI唤醒影像中的情感，让你的故事以全新的方式被讲述、被珍藏、被分享。
       </p>
 
       <div className="mt-8 flex flex-wrap items-center justify-center gap-3">

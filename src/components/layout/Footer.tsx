@@ -37,7 +37,7 @@ function Footer({ oniOSBetaClick }: FooterProps) {
               <span className="text-lg font-semibold">吱吱连环画</span>
             </div>
             <p className="text-muted-contrast text-sm">
-              把创作的工具，放进一个温柔而轻快的启动器。
+              用连环画重讲你的故事，让回忆以全新的方式被讲述、被珍藏、被分享。
             </p>
           </div>
 
