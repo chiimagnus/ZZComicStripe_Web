@@ -1,0 +1,254 @@
+/* 字体优化：使用font-display swap提高加载性能 */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700;800&display=swap');
+
+:root {
+  --bg: #F6F2EA;
+  --surface: #FFFFFF;
+  --text: #1C1A18;
+  --muted: #6B6359; /* 调深一点以提高对比度 */
+  --glass: rgba(255,255,255,0.6);
+  --ring: rgba(0,0,0,0.08);
+  --accent: #CEBEA8; /* 主色：奶油黄 */
+  --accent-deep: #BFA88E; /* 深一点的奶油黄 */
+  --text-contrast: #000000; /* 高对比度文本色 */
+  --muted-contrast: #5A5249; /* 高对比度次要文本色 */
+  /* 品牌色（复古系） */
+  --brand-1: #855C24; /* 深金棕 */
+  --brand-2: #744F19; /* 深棕金 */
+  --brand-3: #C4AB8C; /* 沙米色 */
+}
+
+html, body { height: 100%; }
+body { font-family: 'Inter', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, 'Apple Color Emoji', 'Segoe UI Emoji' !important; background: var(--bg) !important; color: var(--text) !important; }
+h1 { letter-spacing: -0.02em !important; font-family: 'Merriweather', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', serif !important; color: var(--text) !important; }
+
+/* 副标题（Hero subtitle）：使用系统楷体作为中文显示 */
+#hero-subheading {
+  font-family: 'Kaiti', 'STKaiti', 'Kaiti SC', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', serif !important;
+}
+
+/* Soft frame around the whole viewport - 优化背景渐变以提高性能 */
+.neon-frame { 
+  position: relative; 
+  min-height: 100vh; 
+  background: radial-gradient(120% 120% at 50% -10%, rgba(206,190,168,0.35) 0%, rgba(206,190,168,0.10) 35%, rgba(0,0,0,0) 65%), var(--bg);
+  /* 使用transform3d触发硬件加速 */
+  transform: translate3d(0,0,0);
+}
+.neon-frame::before { content: none; }
+
+/* Inner hero panel with soft paper look - 优化阴影和渐变 */
+.stripe-panel { 
+  position: absolute; 
+  inset: 36px; 
+  border-radius: 28px; 
+  overflow: hidden; 
+  background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(250,247,241,0.95));
+  /* 使用较低的模糊值以提高性能 */
+  box-shadow: 0 30px 80px rgba(0,0,0,0.10);
+  /* 使用will-change提示浏览器优化 */
+  will-change: transform;
+}
+.stripe-panel::after { 
+  content: ""; 
+  position: absolute; 
+  inset: 0; 
+  background: radial-gradient(120% 140% at 50% 90%, rgba(0,0,0,0) 0%, rgba(0,0,0,0.02) 65%, rgba(0,0,0,0.06) 100%); 
+  pointer-events: none; 
+  /* 使用transform3d触发硬件加速 */
+  transform: translate3d(0,0,0);
+}
+
+/* Frosted nav capsule (light) - 优化毛玻璃效果 */
+.glass-capsule { 
+  /* 为不支持backdrop-filter的浏览器提供降级 */
+  background: linear-gradient(180deg, rgba(255,255,255,0.75), rgba(255,255,255,0.55));
+  border: 1px solid var(--ring); 
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08); 
+  color: #3b3a38;
+  /* 使用较低的模糊值以提高性能 */
+  backdrop-filter: saturate(120%) blur(8px);
+  /* 为支持的浏览器提供更好的性能 */
+  -webkit-backdrop-filter: saturate(120%) blur(8px);
+}
+
+/* Buttons - 优化按钮样式以提高性能 */
+.btn-primary { 
+  background: var(--accent) !important; 
+  color: #2b241a !important; 
+  border: 1px solid rgba(0,0,0,0.08) !important; 
+  box-shadow: 0 6px 16px rgba(0,0,0,0.10) !important;
+  /* 添加过渡效果 */
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  /* 使用transform而不是改变布局属性 */
+  transform: translate3d(0,0,0);
+}
+.btn-primary:hover { 
+  background: var(--accent-deep) !important;
+  transform: translate3d(0,-2px,0);
+}
+.btn-primary:active {
+  transform: translate3d(0,1px,0);
+}
+
+.btn-ghost { 
+  background: rgba(0,0,0,0.03) !important; 
+  color: #3b3a38 !important; 
+  border: 1px solid rgba(0,0,0,0.06) !important;
+  /* 添加过渡效果 */
+  transition: background-color 0.2s ease;
+}
+.btn-ghost:hover { 
+  background: rgba(0,0,0,0.05) !important;
+}
+
+.version-note { color: var(--muted-contrast) !important; font-size: 12px !important; }
+
+/* small utility for warm heading */
+.heading-glow { text-shadow: none !important; color: var(--text-contrast) !important; }
+
+/* Footer pill */
+.bottom-pill { position: absolute; left: 50%; transform: translateX(-50%); bottom: 38px; color: var(--text-contrast); }
+
+/* Mobile tweaks - 优化移动端样式 */
+@media (max-width: 768px) {
+  .stripe-panel { 
+    inset: 12px; 
+    border-radius: 20px;
+    /* 减少阴影以提高性能 */
+    box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+  }
+  .neon-frame::before { 
+    inset: 10px; 
+    border-radius: 18px; 
+  }
+  
+  /* 为小屏幕优化字体大小 */
+  .heading-glow {
+    font-size: 2.5rem;
+  }
+}
+
+/* High contrast text for accessibility */
+.text-high-contrast { color: var(--text-contrast) !important; }
+.text-muted-contrast { color: var(--muted-contrast) !important; }
+
+/* 复古品牌文字工具类 */
+.text-brand-1 { color: var(--brand-1) !important; }
+.text-brand-2 { color: var(--brand-2) !important; }
+.text-brand-3 { color: var(--brand-3) !important; }
+.brand-heading { color: var(--brand-2) !important; }
+
+/* 性能优化：减少重绘和回流 */
+.will-change-transform {
+  will-change: transform;
+}
+
+/* 预加载关键字体 */
+@font-face {
+  font-family: 'Inter';
+  font-display: swap;
+  src: url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+}
+
+@font-face {
+  font-family: 'Merriweather';
+  font-display: swap;
+  src: url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700;800&display=swap');
+}
+
+
+/* 引号样式（浅色：使用 #744F19 20% 不透明度） */
+.quote-mark {
+  color: rgba(116,79,25,0.50) !important; /* #744F19 at 50% */
+  font-size: 2.6rem !important;
+  line-height: 0.7 !important;
+  display: inline-block !important;
+  vertical-align: middle !important;
+  margin: 0 0.45rem !important;
+  transform: translateY(-0.06em) !important;
+}
+
+@media (min-width: 768px) {
+  .quote-mark { font-size: 3.2rem !important; margin: 0 0.5rem !important; }
+}
+
+/* =======================
+   动效与辅助工具类
+   ======================= */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translate3d(0, 12px, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+.fade-in-up { animation: fadeInUp 700ms ease-out 60ms both; }
+
+@keyframes slowZoom {
+  from { transform: scale(1); }
+  to { transform: scale(1.05); }
+}
+.slow-zoom { animation: slowZoom 18s ease-out both; transform-origin: center; }
+
+@keyframes floatY {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+  100% { transform: translateY(0); }
+}
+.float-y { animation: floatY 2400ms ease-in-out infinite; }
+
+@keyframes scrollBounce {
+  0%, 100% { transform: translateY(0); opacity: .85; }
+  50% { transform: translateY(6px); opacity: 1; }
+}
+.scroll-indicator { animation: scrollBounce 1600ms ease-in-out infinite; }
+
+/* 背景遮罩工具 */
+.hero-scrim {
+  background: linear-gradient(180deg, rgba(246,242,234,0.65) 0%, rgba(246,242,234,0.35) 40%, rgba(246,242,234,1) 100%);
+}
+
+/* =======================
+   水平翻页效果
+   ======================= */
+
+/* 水平页面容器 */
+.horizontal-page-container {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  height: 100vh;
+}
+
+/* 页面样式 */
+.horizontal-page-container > section {
+  min-width: 100vw;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  flex-shrink: 0;
+}
+
+/* 玻璃卡片样式 */
+.glass-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+  .horizontal-page-container {
+    flex-direction: column;
+    overflow-y: auto;
+    scroll-snap-type: y mandatory;
+    height: auto;
+  }
+  
+  .horizontal-page-container > section {
+    min-width: 100%;
+    min-height: 100vh;
+  }
+}
+
