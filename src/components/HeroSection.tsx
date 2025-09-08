@@ -19,23 +19,21 @@ function HeroSection({}: HeroSectionProps) {
           loading="eager"
           draggable="false"
         />
-        {/* 叠层渐变遮罩，提升文字可读性 */}
-        <div className="hero-scrim absolute inset-0" />
       </div>
 
       {/* 前景内容 */}
-      <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-4xl flex-col items-center justify-center px-6 md:px-0">
+      <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-4xl flex-col items-center justify-start px-6 md:px-0 pt-[46svh] sm:pt-[48svh] md:pt-[50svh] pb-16 md:pb-20">
         <h1
           id="hero-heading"
           className="brand-heading heading-glow mx-auto text-5xl font-extrabold leading-[1.08] sm:text-6xl md:text-7xl fade-in-up"
         >
-          用连环画，重讲你的故事
+          吱吱连环画
         </h1>
         <p
           id="hero-subheading"
-          className="mt-5 max-w-2xl text-balance text-brand-3 text-lg sm:text-xl md:text-2xl fade-in-up"
+          className="mt-5 max-w-2xl text-balance text-brand-2 text-lg sm:text-xl md:text-2xl fade-in-up"
         >
-          以复古质感与现代叙事，让每个片段都成为会呼吸的画格。
+          用连环画重讲你们过去的故事
         </p>
 
         <div className="mt-8 flex items-center gap-3 fade-in-up">
