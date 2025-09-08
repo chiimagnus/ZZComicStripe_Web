@@ -104,7 +104,7 @@ function App() {
     <div className="min-h-screen bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100">
       <div className="max-w-xl mx-auto px-4 py-10">
         <header className="mb-8">
-          <h1 className="text-3xl font-semibold">吱吱连环画 · 提交</h1>
+          <h1 className="text-3xl font-semibold">吱吱连环画</h1>
           <p className="text-sm text-slate-600 dark:text-slate-400 mt-2">请填写邮箱并上传视频文件。</p>
         </header>
 
