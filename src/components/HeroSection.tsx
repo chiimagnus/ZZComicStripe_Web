@@ -27,7 +27,9 @@ function HeroSection({}: HeroSectionProps) {
           id="hero-heading"
           className="brand-heading heading-glow mx-auto text-5xl font-extrabold leading-[1.08] sm:text-6xl md:text-7xl fade-in-up"
         >
+          <span className="quote-mark" aria-hidden>“</span>
           吱吱连环画
+          <span className="quote-mark" aria-hidden>”</span>
         </h1>
         <p
           id="hero-subheading"
