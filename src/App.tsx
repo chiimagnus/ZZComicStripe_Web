@@ -5,11 +5,15 @@ import IOSPage from './components/IOSPage'
 import TeamPage from './components/TeamPage'
 import ChangelogPage from './components/ChangelogPage'
 import ContactPage from './components/ContactPage'
+import { useHorizontalScroll } from './hooks/useHorizontalScroll'
 
 function App(): JSX.Element {
   const handleLoginClick = () => {
     console.log('Login clicked')
   }
+
+  // 使用水平滚动hook
+  useHorizontalScroll()
 
   return (
     <div className="neon-frame">
@@ -20,7 +24,7 @@ function App(): JSX.Element {
       <Navigation onLoginClick={handleLoginClick} />
 
       {/* 水平翻页容器 */}
-      <div className="horizontal-page-container">
+      <div className="horizontal-page-container" id="horizontal-container">
         {/* Hero 内容 */}
         <section id="home">
           <HeroSection />

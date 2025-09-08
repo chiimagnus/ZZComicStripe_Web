@@ -214,7 +214,7 @@ h1 { letter-spacing: -0.02em !important; font-family: 'Merriweather', 'PingFang 
 /* 水平页面容器 */
 .horizontal-page-container {
   display: flex;
-  overflow-x: hidden;
+  overflow-x: auto;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   height: 100vh;
@@ -225,6 +225,7 @@ h1 { letter-spacing: -0.02em !important; font-family: 'Merriweather', 'PingFang 
   min-width: 100vw;
   scroll-snap-align: start;
   scroll-snap-stop: always;
+  flex-shrink: 0;
 }
 
 /* 玻璃卡片样式 */

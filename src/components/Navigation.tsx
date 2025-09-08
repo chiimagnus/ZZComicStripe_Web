@@ -1,5 +1,6 @@
 import { LogIn, Menu, X } from 'lucide-react'
 import { useState, useEffect } from 'react'
+import { smoothScrollTo } from '../utils/scrollUtils'
 
 interface NavigationProps {
   onLoginClick?: () => void
@@ -41,9 +42,9 @@ function Navigation({ onLoginClick }: NavigationProps) {
     <nav className="fixed left-1/2 top-6 z-20 w-[calc(100%-40px)] -translate-x-1/2 md:w-auto" aria-label="主导航">
       <div className="glass-capsule mx-auto flex items-center gap-4 rounded-2xl px-3 py-2 sm:px-4">
         <div className="flex items-center gap-2 pr-2">
-          <a href="#" onClick={(e) => {
+          <a href="#home" onClick={(e) => {
             e.preventDefault();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            smoothScrollTo('#home');
           }}>
             <img
               src="/ZZComicStripe_Web/icon.png"
@@ -54,11 +55,11 @@ function Navigation({ onLoginClick }: NavigationProps) {
             />
           </a>
           <a 
-            href="#" 
+            href="#home" 
             className="hidden text-sm font-semibold sm:inline hover:text-neutral-900"
             onClick={(e) => {
               e.preventDefault();
-              window.scrollTo({ top: 0, behavior: 'smooth' });
+              smoothScrollTo('#home');
             }}
           >
             吱吱连环画
@@ -75,10 +76,7 @@ function Navigation({ onLoginClick }: NavigationProps) {
                 role="menuitem"
                 onClick={(e) => {
                   e.preventDefault();
-                  const targetElement = document.querySelector(item.href);
-                  if (targetElement) {
-                    targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                  }
+                  smoothScrollTo(item.href);
                 }}
               >
                 {item.name}
@@ -141,10 +139,7 @@ function Navigation({ onLoginClick }: NavigationProps) {
                   onClick={(e) => {
                     e.preventDefault();
                     setIsMenuOpen(false);
-                    const targetElement = document.querySelector(item.href);
-                    if (targetElement) {
-                      targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }
+                    smoothScrollTo(item.href);
                   }}
                   role="menuitem"
                 >
