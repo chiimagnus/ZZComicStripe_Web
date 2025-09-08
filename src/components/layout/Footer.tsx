@@ -1,31 +1,10 @@
 import { ArrowRight } from 'lucide-react'
-import { useState, useEffect } from 'react'
 
 interface FooterProps {
   oniOSBetaClick?: () => void
 }
 
 function Footer({ oniOSBetaClick }: FooterProps) {
-  const [currentTime, setCurrentTime] = useState<string>('')
-
-  useEffect(() => {
-    // 更新当前时间
-    const updateCurrentTime = () => {
-      const now = new Date()
-      setCurrentTime(now.toLocaleString('zh-CN', { 
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit'
-      }))
-    }
-
-    updateCurrentTime()
-    const timer = setInterval(updateCurrentTime, 60000) // 每分钟更新一次
-
-    return () => clearInterval(timer)
-  }, [])
 
   return (
     <footer className="w-full mt-auto py-8 px-4" role="contentinfo">
@@ -75,7 +54,6 @@ function Footer({ oniOSBetaClick }: FooterProps) {
         <div className="border-t border-neutral-200 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
           <div className="text-sm text-muted-contrast mb-4 md:mb-0">
             <p>© {new Date().getFullYear()} 吱吱连环画. 保留所有权利。</p>
-            <p className="mt-1">当前时间: {currentTime}</p>
           </div>
           
           <div className="flex items-center gap-2">
