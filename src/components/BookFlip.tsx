@@ -55,6 +55,7 @@ export function BookFlip({
   const [viewport, setViewport] = useState<{ w: number; h: number }>({ w: 0, h: 0 })
 
   useEffect(() => {
+    console.log('Registering BookFlip ref:', ref.current)
     register(ref.current)
   }, [register])
 
