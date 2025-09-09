@@ -56,7 +56,7 @@ function Navigation({ onLoginClick }: NavigationProps) {
           </a>
           <a 
             href="#home" 
-            className="hidden text-sm font-semibold sm:inline hover:text-neutral-900"
+            className="hidden text-sm font-semibold sm:inline hover:text-neutral-900 whitespace-nowrap"
             onClick={(e) => {
               e.preventDefault();
               smoothScrollTo('#home');
@@ -71,7 +71,7 @@ function Navigation({ onLoginClick }: NavigationProps) {
           {menuItems.map((item) => (
             <li key={item.name} role="none">
               <a 
-                className="hover:text-neutral-900 hover:font-semibold" 
+                className="hover:text-neutral-900 hover:font-semibold whitespace-nowrap" 
                 href={item.href}
                 role="menuitem"
                 onClick={(e) => {
@@ -97,7 +97,7 @@ function Navigation({ onLoginClick }: NavigationProps) {
             tabIndex={0}
           >
             <LogIn className="h-4 w-4" aria-hidden="true" />
-            <span>登录</span>
+            <span className="whitespace-nowrap">登录</span>
           </a>
           <a
             href="#"
@@ -106,7 +106,7 @@ function Navigation({ onLoginClick }: NavigationProps) {
             tabIndex={0}
           >
             <span className="text-xl leading-none"></span>
-            <span>下载</span>
+            <span className="whitespace-nowrap">下载</span>
           </a>
 
           {/* Mobile menu button */}
