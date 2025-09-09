@@ -39,24 +39,24 @@ function Navigation({ onLoginClick }: NavigationProps) {
   }
 
   return (
-    <nav className="fixed left-1/2 top-6 z-20 w-[calc(100%-40px)] -translate-x-1/2 md:w-auto" aria-label="主导航">
-      <div className="glass-capsule mx-auto flex items-center gap-4 rounded-2xl px-3 py-2 sm:px-4">
-        <div className="flex items-center gap-2 pr-2">
+    <nav className="fixed left-1/2 top-6 z-20 w-[calc(100%-40px)] -translate-x-1/2 md:w-auto min-w-[300px] overflow-visible" aria-label="主导航">
+      <div className="glass-capsule mx-auto flex items-center gap-2 sm:gap-4 rounded-2xl px-2 py-2 sm:px-4 overflow-visible">
+        <div className="flex items-center gap-2 pr-2 flex-shrink-0">
           <a href="#home" onClick={(e) => {
             e.preventDefault();
             smoothScrollTo('#home');
-          }}>
+          }} className="flex-shrink-0">
             <img
               src="/ZZComicStripe_Web/icon.png"
               alt="吱吱连环画 Logo"
-              className="h-6 w-6 rounded-md object-cover"
+              className="h-6 w-6 rounded-md object-contain flex-shrink-0"
               draggable={false}
               onDragStart={(e) => e.preventDefault()}
             />
           </a>
           <a 
             href="#home" 
-            className="hidden text-sm font-semibold sm:inline hover:text-neutral-900 whitespace-nowrap"
+            className="text-sm font-semibold hover:text-neutral-900 whitespace-nowrap"
             onClick={(e) => {
               e.preventDefault();
               smoothScrollTo('#home');
