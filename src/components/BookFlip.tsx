@@ -54,9 +54,21 @@ export function BookFlip({
   const ref = useRef<any>(null)
   const [viewport, setViewport] = useState<{ w: number; h: number }>({ w: 0, h: 0 })
 
+  // 确保在ref可用时注册
   useEffect(() => {
-    console.log('Registering BookFlip ref:', ref.current)
-    register(ref.current)
+    const registerRef = () => {
+      if (ref.current) {
+        register(ref.current)
+      }
+    }
+    
+    // 立即尝试注册
+    registerRef()
+    
+    // 如果ref还没准备好，稍后再试
+    const timeoutId = setTimeout(registerRef, 100)
+    
+    return () => clearTimeout(timeoutId)
   }, [register])
 
   // 跟随视口尺寸，确保书页几何铺满整个浏览器

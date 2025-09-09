@@ -2,7 +2,6 @@
 export function smoothScrollTo(element: Element | string) {
   const isMobile = window.innerWidth < 768
   const id = typeof element === 'string' ? element.replace(/^#/, '') : (element as Element).id
-  console.log('smoothScrollTo called with element:', element, 'isMobile:', isMobile, 'id:', id)
   if (!id) return
 
   if (isMobile) {
