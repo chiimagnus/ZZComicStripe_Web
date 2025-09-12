@@ -1,6 +1,5 @@
 import { LogIn, Menu, X } from 'lucide-react'
 import { useState, useEffect } from 'react'
-import { smoothScrollTo } from '../utils/scrollUtils'
 import { Link } from 'react-router-dom'
 
 interface NavigationProps {

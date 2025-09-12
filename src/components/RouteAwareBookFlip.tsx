@@ -6,7 +6,6 @@ import TeamPage from './TeamPage'
 import ChangelogPage from './ChangelogPage'
 import ContactPage from './ContactPage'
 import { useLocation } from 'react-router-dom'
-import { useEffect } from 'react'
 
 export function RouteAwareBookFlip(): JSX.Element {
   // 定义页面顺序，与idToIndex映射保持一致
