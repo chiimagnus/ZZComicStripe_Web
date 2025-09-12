@@ -116,11 +116,11 @@ export function BookFlip({
       maxShadowOpacity: 0.4,
       showCover: false,
       mobileScrollSupport: true,
-      clickEventForward: true,
+      clickEventForward: false,
       useMouseEvents: true,
       swipeDistance: 30,
-      showPageCorners: true,
-      disableFlipByClick: false,
+      showPageCorners: false,
+      disableFlipByClick: true,
     }
   }, [viewport.w, viewport.h, initialPageIndex])
 

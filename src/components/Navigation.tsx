@@ -1,6 +1,7 @@
 import { LogIn, Menu, X } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import ContentWrapper from './ContentWrapper'
 
 interface NavigationProps {
   onLoginClick?: () => void
@@ -40,7 +41,7 @@ function Navigation({ onLoginClick }: NavigationProps) {
 
   return (
     <nav className="fixed left-1/2 top-2 z-20 w-[calc(100%-40px)] -translate-x-1/2 md:w-[calc(100%-120px)] lg:w-[900px] xl:w-[1000px] min-w-[300px] overflow-visible" aria-label="主导航">
-      <div className="glass-capsule mx-auto flex items-center justify-between gap-2 sm:gap-4 rounded-2xl px-2 py-2 sm:px-4 overflow-visible">
+      <ContentWrapper className="glass-capsule mx-auto flex items-center justify-between gap-2 sm:gap-4 rounded-2xl px-2 py-2 sm:px-4 overflow-visible">
         <div className="flex items-center gap-2 pr-2 flex-shrink-0 min-w-0">
           <Link to="/ZZComicStripe_Web/" className="flex-shrink-0">
             <img
@@ -110,7 +111,7 @@ function Navigation({ onLoginClick }: NavigationProps) {
             {isMenuOpen ? <X className="h-5 w-5" aria-hidden="true" /> : <Menu className="h-5 w-5" aria-hidden="true" />}
           </button>
         </div>
-      </div>
+      </ContentWrapper>
 
       {/* Mobile menu */}
       {isMenuOpen && isMobile && (

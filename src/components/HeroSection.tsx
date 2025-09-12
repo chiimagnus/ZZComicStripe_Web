@@ -1,5 +1,6 @@
 import { ChevronsDown, ArrowRight } from "lucide-react"
 import { useNavigate } from 'react-router-dom'
+import ContentWrapper from './ContentWrapper'
 
 interface HeroSectionProps {
 }
@@ -30,8 +31,7 @@ function HeroSection({}: HeroSectionProps) {
         />
       </div>
 
-      {/* 前景内容 */}
-      <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-4xl flex-col items-center justify-start px-6 md:px-0 pt-[46svh] sm:pt-[48svh] md:pt-[50svh] pb-16 md:pb-20">
+      <ContentWrapper className="relative z-10 mx-auto flex min-h-[100svh] max-w-4xl flex-col items-center justify-start px-6 md:px-0 pt-[46svh] sm:pt-[48svh] md:pt-[50svh] pb-16 md:pb-20">
         <h1
           id="hero-heading"
           className="brand-heading heading-glow mx-auto text-5xl font-extrabold leading-[1.08] sm:text-6xl md:text-7xl fade-in-up"
@@ -65,7 +65,7 @@ function HeroSection({}: HeroSectionProps) {
             <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
           </a>
         </div>
-      </div>
+      </ContentWrapper>
 
       {/* 滚动指示器 */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-brand-1 opacity-90 scroll-indicator" aria-hidden>

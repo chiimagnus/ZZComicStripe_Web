@@ -1,4 +1,5 @@
 import type { JSX } from 'react'
+import ContentWrapper from './ContentWrapper'
 
 function ChangelogPage(): JSX.Element {
   return (
@@ -7,7 +8,7 @@ function ChangelogPage(): JSX.Element {
       <div className="absolute inset-0 -z-10 bg-[#DCC6A0]"></div>
       
       {/* 内容容器 */}
-      <div className="relative z-10 flex items-center min-h-[100svh]">
+      <ContentWrapper className="relative z-10 flex items-center min-h-[100svh]">
         <div className="max-w-3xl mx-auto">
           <h1 className="brand-heading text-4xl sm:text-5xl font-extrabold mb-4">更新日志</h1>
           <p className="text-muted-contrast text-lg mb-8">
@@ -55,7 +56,7 @@ function ChangelogPage(): JSX.Element {
             </div>
           </div>
         </div>
-      </div>
+      </ContentWrapper>
     </section>
   )
 }
