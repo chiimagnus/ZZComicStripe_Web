@@ -1,6 +1,7 @@
 import { LogIn, Menu, X } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import { smoothScrollTo } from '../utils/scrollUtils'
+import { Link } from 'react-router-dom'
 
 interface NavigationProps {
   onLoginClick?: () => void
@@ -11,10 +12,10 @@ function Navigation({ onLoginClick }: NavigationProps) {
   const [isMobile, setIsMobile] = useState(false)
 
   const menuItems = [
-    { name: 'iOS', href: '#ios' },
-    { name: '团队介绍', href: '#team' },
-    { name: '更新日志', href: '#changelog' },
-    { name: '联系方式', href: '#contact' },
+    { name: 'iOS', href: '/ZZComicStripe_Web/ios' },
+    { name: '团队介绍', href: '/ZZComicStripe_Web/team' },
+    { name: '更新日志', href: '/ZZComicStripe_Web/changelog' },
+    { name: '联系方式', href: '/ZZComicStripe_Web/contact' },
   ]
 
   useEffect(() => {
@@ -42,10 +43,7 @@ function Navigation({ onLoginClick }: NavigationProps) {
     <nav className="fixed left-1/2 top-6 z-20 w-[calc(100%-40px)] -translate-x-1/2 md:w-auto min-w-[300px] overflow-visible" aria-label="主导航">
       <div className="glass-capsule mx-auto flex items-center gap-2 sm:gap-4 rounded-2xl px-2 py-2 sm:px-4 overflow-visible">
         <div className="flex items-center gap-2 pr-2 flex-shrink-0">
-          <a href="#home" onClick={(e) => {
-            e.preventDefault();
-            smoothScrollTo('#home');
-          }} className="flex-shrink-0">
+          <Link to="/ZZComicStripe_Web/" className="flex-shrink-0">
             <img
               src="/ZZComicStripe_Web/icon.png"
               alt="吱吱连环画 Logo"
@@ -53,34 +51,26 @@ function Navigation({ onLoginClick }: NavigationProps) {
               draggable={false}
               onDragStart={(e) => e.preventDefault()}
             />
-          </a>
-          <a 
-            href="#home" 
+          </Link>
+          <Link 
+            to="/ZZComicStripe_Web/"
             className="text-sm font-semibold hover:text-neutral-900 whitespace-nowrap"
-            onClick={(e) => {
-              e.preventDefault();
-              smoothScrollTo('#home');
-            }}
           >
             吱吱连环画
-          </a>
+          </Link>
         </div>
 
         {/* Desktop menu */}
         <ul className="hidden items-center gap-4 text-[13px] text-neutral-700 md:flex" role="menubar">
           {menuItems.map((item) => (
             <li key={item.name} role="none">
-              <a 
+              <Link 
                 className="hover:text-neutral-900 hover:font-semibold whitespace-nowrap" 
-                href={item.href}
+                to={item.href}
                 role="menuitem"
-                onClick={(e) => {
-                  e.preventDefault();
-                  smoothScrollTo(item.href);
-                }}
               >
                 {item.name}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
@@ -133,18 +123,14 @@ function Navigation({ onLoginClick }: NavigationProps) {
           <ul className="space-y-3 py-2">
             {menuItems.map((item) => (
               <li key={item.name} role="none">
-                <a 
+                <Link 
                   className="block py-2 px-3 rounded-lg hover:bg-neutral-100 hover:font-semibold text-neutral-700" 
-                  href={item.href}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setIsMenuOpen(false);
-                    smoothScrollTo(item.href);
-                  }}
+                  to={item.href}
+                  onClick={() => setIsMenuOpen(false)}
                   role="menuitem"
                 >
                   {item.name}
-                </a>
+                </Link>
               </li>
             ))}
             <li className="pt-2 border-t border-neutral-200" role="none">

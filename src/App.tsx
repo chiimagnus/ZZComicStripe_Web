@@ -1,13 +1,40 @@
 import type { JSX } from 'react'
 import Navigation from './components/Navigation'
+import { FlipBookProvider } from './contexts/FlipBookContext'
+import { RouteAwareBookFlip } from './components/RouteAwareBookFlip'
+import { useEffect, useState } from 'react'
+import { Outlet, useLocation } from 'react-router-dom'
+import { useFlipBook } from './contexts/FlipBookContext'
 import HeroSection from './components/HeroSection'
 import IOSPage from './components/IOSPage'
 import TeamPage from './components/TeamPage'
 import ChangelogPage from './components/ChangelogPage'
 import ContactPage from './components/ContactPage'
-import { FlipBookProvider } from './contexts/FlipBookContext'
-import { BookFlip } from './components/BookFlip'
-import { useEffect, useState } from 'react'
+
+// 创建一个组件来监听路由变化并触发翻页
+function RouteChangeListener() {
+  const location = useLocation()
+  const { goToId } = useFlipBook()
+  
+  useEffect(() => {
+    // 根据路由路径确定要翻到的页面ID
+    let pageId = 'home'
+    if (location.pathname.includes('/ios')) {
+      pageId = 'ios'
+    } else if (location.pathname.includes('/team')) {
+      pageId = 'team'
+    } else if (location.pathname.includes('/changelog')) {
+      pageId = 'changelog'
+    } else if (location.pathname.includes('/contact')) {
+      pageId = 'contact'
+    }
+    
+    // 触发翻页到指定页面
+    goToId(pageId)
+  }, [location, goToId])
+  
+  return null // 这个组件不渲染任何内容，只用于监听路由变化
+}
 
 function App(): JSX.Element {
   const handleLoginClick = () => {
@@ -41,35 +68,14 @@ function App(): JSX.Element {
         <>
           <Navigation onLoginClick={handleLoginClick} />
           <main>
-            <section id="home">
-              <HeroSection />
-            </section>
-            <section id="ios">
-              <IOSPage />
-            </section>
-            <section id="team">
-              <TeamPage />
-            </section>
-            <section id="changelog">
-              <ChangelogPage />
-            </section>
-            <section id="contact">
-              <ContactPage />
-            </section>
+            <Outlet />
           </main>
         </>
       ) : (
         <FlipBookProvider idToIndex={idToIndex}>
           <Navigation onLoginClick={handleLoginClick} />
-          <BookFlip
-            pages={[
-              { id: 'home', element: <HeroSection /> },
-              { id: 'ios', element: <IOSPage /> },
-              { id: 'team', element: <TeamPage /> },
-              { id: 'changelog', element: <ChangelogPage /> },
-              { id: 'contact', element: <ContactPage /> },
-            ]}
-          />
+          <RouteChangeListener />
+          <RouteAwareBookFlip />
         </FlipBookProvider>
       )}
       
