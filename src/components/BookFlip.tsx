@@ -28,6 +28,8 @@ const pageStyle: Partial<CSSProperties> = {
   width: '100%',
   height: '100%',
   background: 'transparent',
+  transformStyle: 'preserve-3d',
+  perspective: '1000px',
 }
 
 const halfViewportStyle: Partial<CSSProperties> = {
@@ -35,6 +37,7 @@ const halfViewportStyle: Partial<CSSProperties> = {
   overflow: 'hidden',
   width: '100%',
   height: '100%',
+  transformStyle: 'preserve-3d',
 }
 
 const spreadStyle: Partial<CSSProperties> = {
@@ -43,6 +46,7 @@ const spreadStyle: Partial<CSSProperties> = {
   top: 0,
   width: '200%',
   height: '100%',
+  transformStyle: 'preserve-3d',
 }
 
 export function BookFlip({
