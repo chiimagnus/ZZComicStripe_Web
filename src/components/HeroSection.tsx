@@ -41,10 +41,12 @@ function HeroSection({}: HeroSectionProps) {
 
         <div className="mt-8 flex items-center gap-3 fade-in-up">
           <a
-            href="#create"
+            href="https://ce2v5s31zi.feishu.cn/share/base/form/shrcnOuOF1XMGI4rC81tuR5sEgc"
+            target="_blank"
+            rel="noopener noreferrer"
             className="btn-primary inline-flex items-center justify-center rounded-full px-6 py-3 text-base font-semibold"
           >
-            开始创作
+            上传视频
           </a>
           <a
             href="#learn"
