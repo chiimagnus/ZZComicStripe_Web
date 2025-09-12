@@ -18,8 +18,8 @@ function HeroSection({}: HeroSectionProps) {
       aria-labelledby="hero-heading"
       aria-describedby="hero-subheading"
     >
-      {/* 背景图容器 - 与 stripe-panel 对齐 */}
-      <div className="absolute inset-[12px] rounded-2xl overflow-hidden -z-10 md:inset-[36px] md:rounded-2xl">
+      {/* 背景图 */}
+      <div className="absolute inset-0 -z-10">
         <img
           src="/ZZComicStripe_Web/mainview2.jpg"
           alt="背景：连环画风格主视觉"
