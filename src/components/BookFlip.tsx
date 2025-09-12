@@ -75,7 +75,17 @@ export function BookFlip({
 
   // 跟随视口尺寸，确保书页几何铺满整个浏览器
   useEffect(() => {
-    const update = () => setViewport({ w: window.innerWidth, h: window.innerHeight })
+    const update = () => {
+      // 计算减去边距后的可用尺寸
+      const isMobile = window.innerWidth < 768
+      const horizontalPadding = isMobile ? 24 : 72  // 12px * 2 或 36px * 2
+      const verticalPadding = isMobile ? 24 : 72   // 12px * 2 或 36px * 2
+      
+      setViewport({ 
+        w: window.innerWidth - horizontalPadding, 
+        h: window.innerHeight - verticalPadding 
+      })
+    }
     update()
     window.addEventListener('resize', update)
     return () => window.removeEventListener('resize', update)
@@ -115,7 +125,7 @@ export function BookFlip({
   }
 
   return (
-    <div style={{ position: 'fixed', inset: 0, width: '100vw', height: '100vh', zIndex: 0 }}>
+    <div className="absolute inset-[12px] rounded-2xl overflow-hidden md:inset-[36px] md:rounded-2xl z-0">
       <HTMLFlipBook
         {...sizeProps}
         className="zz-bookflip"
