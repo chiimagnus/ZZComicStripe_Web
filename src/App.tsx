@@ -2,14 +2,10 @@ import type { JSX } from 'react'
 import Navigation from './components/Navigation'
 import { FlipBookProvider } from './contexts/FlipBookContext'
 import { RouteAwareBookFlip } from './components/RouteAwareBookFlip'
+import { MobileRouteContent } from './components/MobileRouteContent'
 import { useEffect, useState } from 'react'
-import { Outlet, useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import { useFlipBook } from './contexts/FlipBookContext'
-import HeroSection from './components/HeroSection'
-import IOSPage from './components/IOSPage'
-import TeamPage from './components/TeamPage'
-import ChangelogPage from './components/ChangelogPage'
-import ContactPage from './components/ContactPage'
 
 // 创建一个组件来监听路由变化并触发翻页
 function RouteChangeListener() {
@@ -68,7 +64,7 @@ function App(): JSX.Element {
         <>
           <Navigation onLoginClick={handleLoginClick} />
           <main>
-            <Outlet />
+            <MobileRouteContent />
           </main>
         </>
       ) : (
