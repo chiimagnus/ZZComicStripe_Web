@@ -40,9 +40,9 @@ function Navigation({ onLoginClick }: NavigationProps) {
   }
 
   return (
-    <nav className="fixed left-1/2 top-6 z-20 w-[calc(100%-40px)] -translate-x-1/2 md:w-[calc(100%-120px)] lg:w-[900px] min-w-[300px] overflow-visible" aria-label="主导航">
-      <div className="glass-capsule mx-auto flex items-center gap-2 sm:gap-4 rounded-2xl px-2 py-2 sm:px-4 overflow-visible">
-        <div className="flex items-center gap-2 pr-2 flex-shrink-0">
+    <nav className="fixed left-1/2 top-6 z-20 w-[calc(100%-40px)] -translate-x-1/2 md:w-[calc(100%-120px)] lg:w-[900px] xl:w-[1000px] min-w-[300px] overflow-visible" aria-label="主导航">
+      <div className="glass-capsule mx-auto flex items-center justify-between gap-2 sm:gap-4 rounded-2xl px-2 py-2 sm:px-4 overflow-visible">
+        <div className="flex items-center gap-2 pr-2 flex-shrink-0 min-w-0">
           <Link to="/ZZComicStripe_Web/" className="flex-shrink-0">
             <img
               src="/ZZComicStripe_Web/icon.png"
@@ -54,14 +54,14 @@ function Navigation({ onLoginClick }: NavigationProps) {
           </Link>
           <Link 
             to="/ZZComicStripe_Web/"
-            className="text-sm font-semibold hover:text-neutral-900 whitespace-nowrap"
+            className="text-sm font-semibold hover:text-neutral-900 whitespace-nowrap overflow-hidden text-ellipsis"
           >
             吱吱连环画
           </Link>
         </div>
 
         {/* Desktop menu */}
-        <ul className="hidden items-center gap-4 text-[13px] text-neutral-700 md:flex" role="menubar">
+        <ul className="hidden items-center gap-2 sm:gap-4 text-[13px] text-neutral-700 md:flex flex-shrink flex-nowrap" role="menubar">
           {menuItems.map((item) => (
             <li key={item.name} role="none">
               <Link 
@@ -78,7 +78,7 @@ function Navigation({ onLoginClick }: NavigationProps) {
         <div className="ml-auto flex items-center gap-2">
           <a
             href="#"
-            className="btn-ghost hidden items-center gap-1 rounded-xl px-3 py-2 text-sm md:inline-flex"
+            className="btn-ghost hidden items-center gap-1 rounded-xl px-3 py-2 text-sm md:inline-flex flex-shrink-0"
             onClick={(e) => {
               e.preventDefault()
               onLoginClick?.()
@@ -91,7 +91,7 @@ function Navigation({ onLoginClick }: NavigationProps) {
           </a>
           <a
             href="#"
-            className="btn-primary inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm"
+            className="btn-primary inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm flex-shrink-0"
             role="button"
             tabIndex={0}
           >
