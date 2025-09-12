@@ -47,8 +47,10 @@ const spreadStyle: Partial<CSSProperties> = {
 
 export function BookFlip({
   pages,
+  initialPageIndex = 0,
 }: {
   pages: { id: string; element: JSX.Element }[]
+  initialPageIndex?: number
 }): JSX.Element {
   const { register } = useFlipBook()
   const ref = useRef<any>(null)
@@ -84,7 +86,7 @@ export function BookFlip({
     const pageHeight = Math.max(320, viewport.h)
     return {
       // 固定模式：每页宽=视口宽/2，页高=视口高，铺满角到角
-      startPage: 0,
+      startPage: initialPageIndex,
       size: 'fixed' as const,
       width: pageWidth,
       height: pageHeight,
@@ -106,7 +108,7 @@ export function BookFlip({
       showPageCorners: true,
       disableFlipByClick: false,
     }
-  }, [viewport.w, viewport.h])
+  }, [viewport.w, viewport.h, initialPageIndex])
 
   if (!viewport.w || !viewport.h) {
     return <div style={{ position: 'fixed', inset: 0 }} />
