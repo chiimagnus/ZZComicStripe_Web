@@ -1,6 +1,6 @@
 import type { JSX } from 'react'
 import Navigation from './components/Navigation'
-import { FlipBookProvider } from './contexts/FlipBookContext'
+import { FlipBookProvider } from './components/flip/FlipBookContext'
 import { RouteAwareBookFlip } from './components/flip/RouteAwareBookFlip'
 import { MobileRouteContent } from './pages/MobileRouteContent'
 import { useEffect, useState } from 'react'
