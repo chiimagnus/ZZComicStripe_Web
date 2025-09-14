@@ -3,7 +3,7 @@ import { ArrowRight } from 'lucide-react'
 
 // Apple Logo SVG Component
 const AppleLogo = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" className="h-5 w-5">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" className="h-5 w-5 relative top-[-2px]">
     <path d="M97.905 67.885c.174 18.8 16.494 25.057 16.674 25.137-.138.44-2.607 8.916-8.597 17.669-5.178 7.568-10.553 15.108-19.018 15.266-8.318.152-10.993-4.934-20.504-4.934-9.508 0-12.479 4.776-20.354 5.086-8.172.31-14.395-8.185-19.616-15.724C15.822 94.961 7.669 66.8 18.616 47.791c5.438-9.44 15.158-15.417 25.707-15.571 8.024-.153 15.598 5.398 20.503 5.398 4.902 0 14.106-6.676 23.782-5.696 4.051.169 15.421 1.636 22.722 12.324-.587.365-13.566 7.921-13.425 23.639M82.272 21.719c4.338-5.251 7.258-12.563 6.462-19.836-6.254.251-13.816 4.167-18.301 9.416-4.02 4.647-7.54 12.087-6.591 19.216 6.971.54 14.091-3.542 18.43-8.796"/>
   </svg>
 )
@@ -56,8 +56,8 @@ function LoginPage(): JSX.Element {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8 glass-card rounded-2xl p-8 shadow-xl">
+    <div className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-brand-3/30 via-surface to-brand-1/20">
+      <div className="max-w-md w-full space-y-8 glass-card rounded-2xl p-8 shadow-xl bg-white/80 backdrop-blur-sm">
         <div>
           <h2 className="mt-6 text-center text-3xl font-bold text-brand-2 heading-glow">登录您的账户</h2>
           <p className="mt-2 text-center text-sm text-muted-contrast">
@@ -111,7 +111,7 @@ function LoginPage(): JSX.Element {
         <div className="space-y-3">
           <button 
             type="button" 
-            className="w-full flex items-center justify-center py-3 px-4 border border-ring shadow-sm text-sm font-medium rounded-lg bg-black text-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black transition duration-300 transform hover:-translate-y-0.5"
+            className="w-full flex items-center justify-center py-3 px-4 border border-ring shadow-sm text-sm font-medium rounded-lg bg-white text-black hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition duration-300 transform hover:-translate-y-0.5"
             aria-label="通过 Apple 登录"
           >
             <AppleLogo />
