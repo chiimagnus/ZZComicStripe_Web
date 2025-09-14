@@ -1,6 +1,6 @@
 import { ChevronsDown, ArrowRight, ExternalLink } from "lucide-react"
 import { useNavigate } from 'react-router-dom'
-import ContentWrapper from './ContentWrapper'
+import ContentWrapper from '../components/ContentWrapper'
 
 interface HeroSectionProps {
 }

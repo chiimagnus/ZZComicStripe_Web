@@ -1,5 +1,5 @@
 import type { JSX } from 'react'
-import ContentWrapper from './ContentWrapper'
+import ContentWrapper from '../components/ContentWrapper'
 
 function TeamPage(): JSX.Element {
   return (
