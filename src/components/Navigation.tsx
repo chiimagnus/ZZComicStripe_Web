@@ -3,11 +3,7 @@ import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import ContentWrapper from './ContentWrapper'
 
-interface NavigationProps {
-  onLoginClick?: () => void
-}
-
-function Navigation({ onLoginClick }: NavigationProps) {
+function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
 
