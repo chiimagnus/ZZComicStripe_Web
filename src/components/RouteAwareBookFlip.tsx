@@ -19,17 +19,14 @@ export function RouteAwareBookFlip(): JSX.Element {
   const location = useLocation()
   const navigate = useNavigate()
 
-  // 根据当前路由确定初始页面索引
-  const getInitialPageIndex = () => {
-    if (location.pathname.includes('/ios')) {
-      return 2 // iOS页面的索引（与idToIndex映射保持一致）
-    } else if (location.pathname.includes('/team')) {
-      return 4 // 团队页面的索引（与idToIndex映射保持一致）
-    } else if (location.pathname.includes('/contact')) {
-      return 6 // 联系方式页面的索引（与idToIndex映射保持一致）
-    } else {
-      return 0 // 默认首页索引（与idToIndex映射保持一致）
-    }
+  // 仅在组件首次挂载时确定初始页面索引，避免后续路由变化触发重新定位或动画
+  const initialIndexRef = useRef<number | null>(null)
+  if (initialIndexRef.current === null) {
+    const path = location.pathname
+    if (path.includes('/ios')) initialIndexRef.current = 2
+    else if (path.includes('/team')) initialIndexRef.current = 4
+    else if (path.includes('/contact')) initialIndexRef.current = 6
+    else initialIndexRef.current = 0
   }
 
   // 去抖：快速翻页时不频繁更新路由，等用户停止翻页后再跳转
@@ -63,5 +60,5 @@ export function RouteAwareBookFlip(): JSX.Element {
     }, DEBOUNCE_MS)
   }, [pages, navigate, location.pathname])
 
-  return <BookFlip pages={pages} initialPageIndex={getInitialPageIndex()} onPageIndexChange={handlePageIndexChange} />
+  return <BookFlip pages={pages} initialPageIndex={initialIndexRef.current as number} onPageIndexChange={handlePageIndexChange} />
 }

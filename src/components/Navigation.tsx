@@ -1,6 +1,7 @@
 import { LogIn, Menu, X } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { smoothScrollTo } from '../utils/scrollUtils'
 import ContentWrapper from './ContentWrapper'
 
 function Navigation() {
@@ -8,9 +9,9 @@ function Navigation() {
   const [isMobile, setIsMobile] = useState(false)
 
   const menuItems = [
-    { name: 'iOS', href: '/ZZComicStripe_Web/ios' },
-    { name: '团队介绍', href: '/ZZComicStripe_Web/team' },
-    { name: '联系方式', href: '/ZZComicStripe_Web/contact' },
+    { name: 'iOS', href: '/ZZComicStripe_Web/ios', id: 'ios' },
+    { name: '团队介绍', href: '/ZZComicStripe_Web/team', id: 'team' },
+    { name: '联系方式', href: '/ZZComicStripe_Web/contact', id: 'contact' },
   ]
 
   useEffect(() => {
@@ -63,6 +64,12 @@ function Navigation() {
                 className="hover:text-neutral-900 hover:font-semibold whitespace-nowrap" 
                 to={item.href}
                 role="menuitem"
+                onClick={(e) => {
+                  if (window.innerWidth >= 768) {
+                    e.preventDefault()
+                    smoothScrollTo(item.id)
+                  }
+                }}
               >
                 {item.name}
               </Link>
