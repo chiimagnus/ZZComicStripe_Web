@@ -41,14 +41,14 @@ function App(): JSX.Element {
     navigate('/ZZComicStripe_Web/login')
   }
 
-  // 单页模式：每个逻辑页面对应一个页面索引
+  // 每个逻辑页面映射到双页（左右相同内容），因此索引为偶数页
   const idToIndex = {
     home: 0,
-    ios: 1,
-    team: 2,
-    changelog: 3,
-    contact: 4,
-    login: 5,
+    ios: 2,
+    team: 4,
+    changelog: 6,
+    contact: 8,
+    login: 10,
   } as const
 
   const [isMobile, setIsMobile] = useState(false)
