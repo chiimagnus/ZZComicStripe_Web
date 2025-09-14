@@ -1,10 +1,10 @@
 import type { JSX, FormEvent } from 'react'
-import { ArrowRight, X } from 'lucide-react'
+import { X, Github } from 'lucide-react'
 import { useEffect } from 'react'
 
 // Apple Logo SVG Component
 const AppleLogo = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" className="h-6 w-6 relative top-[-2px]">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" className="h-5 w-5">
     <path d="M97.905 67.885c.174 18.8 16.494 25.057 16.674 25.137-.138.44-2.607 8.916-8.597 17.669-5.178 7.568-10.553 15.108-19.018 15.266-8.318.152-10.993-4.934-20.504-4.934-9.508 0-12.479 4.776-20.354 5.086-8.172.31-14.395-8.185-19.616-15.724C15.822 94.961 7.669 66.8 18.616 47.791c5.438-9.44 15.158-15.417 25.707-15.571 8.024-.153 15.598 5.398 20.503 5.398 4.902 0 14.106-6.676 23.782-5.696 4.051.169 15.421 1.636 22.722 12.324-.587.365-13.566 7.921-13.425 23.639M82.272 21.719c4.338-5.251 7.258-12.563 6.462-19.836-6.254.251-13.816 4.167-18.301 9.416-4.02 4.647-7.54 12.087-6.591 19.216 6.971.54 14.091-3.542 18.43-8.796"/>
   </svg>
 )
@@ -20,34 +20,7 @@ const GoogleLogo = () => (
   </svg>
 )
 
-interface InputFieldProps {
-  id: string
-  label: string
-  type: string
-  placeholder: string
-  required?: boolean
-}
-
-function InputField({ id, label, type, placeholder, required = false }: InputFieldProps) {
-  return (
-    <div>
-      <label htmlFor={id} className="block text-sm font-medium text-text-contrast">
-        {label}
-      </label>
-      <div className="mt-1">
-        <input
-          id={id}
-          name={id}
-          type={type}
-          required={required}
-          className="appearance-none rounded-lg relative block w-full px-4 py-3 border border-ring placeholder-muted text-text focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent focus:z-10 sm:text-sm transition duration-200 bg-glass backdrop-blur-sm"
-          placeholder={placeholder}
-          aria-describedby={`${id}-error`}
-        />
-      </div>
-    </div>
-  )
-}
+// InputField 被保留为接口定义，当前简约布局直接使用原生 input 元素
 
 interface LoginSheetProps {
   open: boolean
@@ -92,77 +65,52 @@ function LoginSheet({ open, onClose }: LoginSheetProps): JSX.Element | null {
             <X className="h-5 w-5" />
           </button>
 
-          <div>
-            <h2 className="mt-2 text-center text-2xl font-bold text-brand-2 heading-glow">登录您的账户</h2>
-            <p className="mt-2 text-center text-sm text-muted-contrast">
-              使用邮箱和密码登录，或选择其他方式
-            </p>
-          </div>
+          <div className="flex flex-col items-center gap-6">
+            <div className="w-14 h-14 rounded-md bg-brand-3 flex items-center justify-center">
+              <div className="w-6 h-6 bg-brand-2 rotate-45" />
+            </div>
 
-          <form className="mt-6 space-y-6" onSubmit={handleSubmit}>
-            <InputField
-              id="email"
-              label="邮箱地址"
-              type="email"
-              placeholder="your@email.com"
-              required
-            />
+            <div className="text-center">
+              <h2 className="text-2xl font-bold text-brand-2">登录您的账户</h2>
+              <p className="mt-1 text-sm text-muted-contrast">使用邮箱和密码登录，或选择其他方式</p>
+            </div>
 
-            <InputField
-              id="password"
-              label="密码"
-              type="password"
-              placeholder="••••••••"
-              required
-            />
-
-            <div>
-              <button
-                type="submit"
-                className="btn-primary w-full flex justify-center py-3 px-4 text-sm font-semibold rounded-lg transition duration-300 transform hover:-translate-y-0.5 focus:ring-2 focus:ring-offset-2 focus:ring-accent focus:ring-offset-transparent"
-                aria-label="登录账户"
-              >
-                登录
-                <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+            <div className="flex items-center justify-center gap-4">
+              <button type="button" aria-label="Apple" className="w-24 h-12 rounded-lg bg-white flex items-center justify-center shadow-sm">
+                <AppleLogo />
+              </button>
+              <button type="button" aria-label="Github" className="w-24 h-12 rounded-lg bg-white/5 flex items-center justify-center shadow-sm text-white">
+                <Github className="h-6 w-6" />
+              </button>
+              <button type="button" aria-label="Google" className="w-24 h-12 rounded-lg bg-white flex items-center justify-center shadow-sm">
+                <GoogleLogo />
               </button>
             </div>
-          </form>
 
-          <div className="my-6">
-            <div className="relative">
-              <div className="relative flex justify-center text-sm">
-                <span className="px-3 bg-surface text-muted-contrast rounded-full">或使用第三方登录</span>
-              </div>
-            </div>
-          </div>
+            <div className="text-sm text-muted-contrast">or</div>
 
-          <div className="space-y-3">
-            <button
-              type="button"
-              className="w-full flex items-center justify-center py-3 px-4 border border-ring shadow-sm text-sm font-medium rounded-lg bg-white text-black hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition duration-300 transform hover:-translate-y-0.5"
-              aria-label="通过 Apple 登录"
-            >
-              <AppleLogo />
-              通过 Apple 登录
-            </button>
+            <form className="w-full space-y-4" onSubmit={handleSubmit}>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                required
+                placeholder="Email address"
+                className="appearance-none rounded-lg block w-full px-4 py-3 border border-ring placeholder-muted text-text focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent sm:text-sm transition duration-200 bg-glass backdrop-blur-sm"
+              />
 
-            <button
-              type="button"
-              className="w-full flex items-center justify-center py-3 px-4 border border-blue-500 shadow-sm text-sm font-medium rounded-lg bg-white text-blue-500 hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-300 transform hover:-translate-y-0.5"
-              aria-label="通过 Google 登录"
-            >
-              <GoogleLogo />
-              通过 Google 登录
-            </button>
-          </div>
+              <input
+                id="password"
+                name="password"
+                type="password"
+                placeholder="Password (optional)"
+                className="appearance-none rounded-lg block w-full px-4 py-3 border border-ring placeholder-muted text-text focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent sm:text-sm transition duration-200 bg-glass backdrop-blur-sm"
+              />
 
-          <div className="text-center mt-6">
-            <p className="text-sm text-muted-contrast">
-              还没有账户？
-              <a href="#" className="font-semibold text-brand-2 hover:text-brand-1 transition duration-200 focus:outline-none focus:ring-2 focus:ring-accent rounded">
-                立即注册
-              </a>
-            </p>
+              <button type="submit" className="w-full bg-white text-black rounded-lg py-3 font-medium shadow-md">Send Magic Link</button>
+            </form>
+
+            <button type="button" className="w-full border rounded-lg py-3 text-sm">Don't have an account? Sign up →</button>
           </div>
         </div>
       </div>
