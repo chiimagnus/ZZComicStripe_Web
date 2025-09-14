@@ -85,7 +85,7 @@ function LoginSheet({ open, onClose }: LoginSheetProps): JSX.Element | null {
               <button
                 type="button"
                 aria-label="Apple"
-                className="w-24 h-12 rounded-lg bg-white flex items-center justify-center shadow-sm transition transform hover:-translate-y-0.5 active:scale-95 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent"
+                className="w-24 h-12 rounded-lg bg-white flex items-center justify-center transition transform hover:-translate-y-0.5 active:scale-95 focus:outline-none"
                 onClick={() => console.log('Sign in with Apple')}
               >
                 <AppleLogo />
@@ -93,7 +93,7 @@ function LoginSheet({ open, onClose }: LoginSheetProps): JSX.Element | null {
               <button
                 type="button"
                 aria-label="Github"
-                className="w-24 h-12 rounded-lg bg-white flex items-center justify-center shadow-sm transition transform hover:-translate-y-0.5 active:scale-95 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent"
+                className="w-24 h-12 rounded-lg bg-white flex items-center justify-center transition transform hover:-translate-y-0.5 active:scale-95 focus:outline-none"
                 onClick={() => console.log('Sign in with Github')}
               >
                 <Github className="h-6 w-6" />
@@ -101,7 +101,7 @@ function LoginSheet({ open, onClose }: LoginSheetProps): JSX.Element | null {
               <button
                 type="button"
                 aria-label="Google"
-                className="w-24 h-12 rounded-lg bg-white flex items-center justify-center shadow-sm transition transform hover:-translate-y-0.5 active:scale-95 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent"
+                className="w-24 h-12 rounded-lg bg-white flex items-center justify-center transition transform hover:-translate-y-0.5 active:scale-95 focus:outline-none"
                 onClick={() => console.log('Sign in with Google')}
               >
                 <GoogleLogo />
