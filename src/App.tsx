@@ -4,8 +4,9 @@ import { FlipBookProvider } from './contexts/FlipBookContext'
 import { RouteAwareBookFlip } from './components/RouteAwareBookFlip'
 import { MobileRouteContent } from './components/MobileRouteContent'
 import { useEffect, useState } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { useFlipBook } from './contexts/FlipBookContext'
+import LoginSheet from './components/LoginPage'
 
 // 创建一个组件来监听路由变化并触发翻页
 function RouteChangeListener() {
@@ -14,6 +15,10 @@ function RouteChangeListener() {
   
   useEffect(() => {
     // 根据路由路径确定要翻到的页面ID
+    if (location.pathname.includes('/login')) {
+      // 打开登录时不改变当前翻页位置
+      return
+    }
     let pageId = 'home'
     if (location.pathname.includes('/ios')) {
       pageId = 'ios'
@@ -23,8 +28,6 @@ function RouteChangeListener() {
       pageId = 'changelog'
     } else if (location.pathname.includes('/contact')) {
       pageId = 'contact'
-    } else if (location.pathname.includes('/login')) {
-      pageId = 'login'
     }
     
     // 触发翻页到指定页面
@@ -43,10 +46,21 @@ function App(): JSX.Element {
     team: 4,
     changelog: 6,
     contact: 8,
-    login: 10,
   } as const
 
   const [isMobile, setIsMobile] = useState(false)
+  const location = useLocation()
+  const navigate = useNavigate()
+  const isLoginOpen = location.pathname.includes('/login')
+  const handleCloseLogin = () => {
+    // 关闭时回退到去掉 /login 的路径
+    const basePath = location.pathname.replace(/\/?login$/, '') || '/ZZComicStripe_Web/'
+    if (basePath !== location.pathname) {
+      navigate(basePath)
+    } else {
+      navigate(-1)
+    }
+  }
   useEffect(() => {
     const fn = () => setIsMobile(window.innerWidth < 768)
     fn()
@@ -74,6 +88,8 @@ function App(): JSX.Element {
           <RouteAwareBookFlip />
         </FlipBookProvider>
       )}
+      {/* 登录 Sheet 挂载在全局 */}
+      <LoginSheet open={isLoginOpen} onClose={handleCloseLogin} />
       
       {/* 页脚 - 隐藏 */}
       {/* <Footer /> */}

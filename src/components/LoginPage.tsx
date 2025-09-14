@@ -1,5 +1,6 @@
 import type { JSX, FormEvent } from 'react'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, X } from 'lucide-react'
+import { useEffect } from 'react'
 
 // Apple Logo SVG Component
 const AppleLogo = () => (
@@ -48,98 +49,128 @@ function InputField({ id, label, type, placeholder, required = false }: InputFie
   )
 }
 
-function LoginPage(): JSX.Element {
+interface LoginSheetProps {
+  open: boolean
+  onClose: () => void
+}
+
+function LoginSheet({ open, onClose }: LoginSheetProps): JSX.Element | null {
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault()
-    // 这里添加登录逻辑
     console.log('登录表单提交')
   }
 
+  useEffect(() => {
+    if (!open) return
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose()
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [open, onClose])
+
+  if (!open) return null
+
   return (
-    <div className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-[#DCC6A0]">
-      <div className="max-w-md w-full space-y-8 glass-card rounded-2xl p-8 shadow-xl bg-white/80 backdrop-blur-sm">
-        <div>
-          <h2 className="mt-6 text-center text-3xl font-bold text-brand-2 heading-glow">登录您的账户</h2>
-          <p className="mt-2 text-center text-sm text-muted-contrast">
-            使用邮箱和密码登录，或选择其他方式
-          </p>
-        </div>
-        
-        {/* 登录表单 */}
-        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-          <InputField
-            id="email"
-            label="邮箱地址"
-            type="email"
-            placeholder="your@email.com"
-            required
-          />
-          
-          <InputField
-            id="password"
-            label="密码"
-            type="password"
-            placeholder="••••••••"
-            required
-          />
-          
+    <div className="fixed inset-0 z-30">
+      <div className="absolute inset-0 bg-black/30 backdrop-blur-[2px]" onClick={onClose} />
+
+      {/* Bottom sheet on mobile, centered dialog on desktop */}
+      <div className="absolute inset-x-0 bottom-0 md:inset-0 md:flex md:items-center md:justify-center">
+        <div
+          className="relative w-full max-h-[90vh] overflow-auto rounded-t-2xl md:rounded-2xl bg-white/90 glass-card shadow-xl md:max-w-md p-6 md:p-8 mx-auto"
+          onClick={(e) => e.stopPropagation()}
+          role="dialog"
+          aria-modal="true"
+          aria-label="登录"
+        >
+          <button
+            className="absolute right-3 top-3 rounded-md p-1 text-neutral-600 hover:bg-neutral-100"
+            aria-label="关闭"
+            onClick={onClose}
+          >
+            <X className="h-5 w-5" />
+          </button>
+
           <div>
-            <button 
-              type="submit" 
-              className="btn-primary w-full flex justify-center py-3 px-4 text-sm font-semibold rounded-lg transition duration-300 transform hover:-translate-y-0.5 focus:ring-2 focus:ring-offset-2 focus:ring-accent focus:ring-offset-transparent"
-              aria-label="登录账户"
+            <h2 className="mt-2 text-center text-2xl font-bold text-brand-2 heading-glow">登录您的账户</h2>
+            <p className="mt-2 text-center text-sm text-muted-contrast">
+              使用邮箱和密码登录，或选择其他方式
+            </p>
+          </div>
+
+          <form className="mt-6 space-y-6" onSubmit={handleSubmit}>
+            <InputField
+              id="email"
+              label="邮箱地址"
+              type="email"
+              placeholder="your@email.com"
+              required
+            />
+
+            <InputField
+              id="password"
+              label="密码"
+              type="password"
+              placeholder="••••••••"
+              required
+            />
+
+            <div>
+              <button
+                type="submit"
+                className="btn-primary w-full flex justify-center py-3 px-4 text-sm font-semibold rounded-lg transition duration-300 transform hover:-translate-y-0.5 focus:ring-2 focus:ring-offset-2 focus:ring-accent focus:ring-offset-transparent"
+                aria-label="登录账户"
+              >
+                登录
+                <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+              </button>
+            </div>
+          </form>
+
+          <div className="my-6">
+            <div className="relative">
+              <div className="absolute inset-0 flex items-center">
+                <div className="w-full border-t border-ring"></div>
+              </div>
+              <div className="relative flex justify-center text-sm">
+                <span className="px-3 bg-surface text-muted-contrast rounded-full">或使用第三方登录</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="space-y-3">
+            <button
+              type="button"
+              className="w-full flex items-center justify-center py-3 px-4 border border-ring shadow-sm text-sm font-medium rounded-lg bg-white text-black hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition duration-300 transform hover:-translate-y-0.5"
+              aria-label="通过 Apple 登录"
             >
-              登录
-              <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+              <AppleLogo />
+              通过 Apple 登录
+            </button>
+
+            <button
+              type="button"
+              className="w-full flex items-center justify-center py-3 px-4 border border-blue-500 shadow-sm text-sm font-medium rounded-lg bg-white text-blue-500 hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-300 transform hover:-translate-y-0.5"
+              aria-label="通过 Google 登录"
+            >
+              <GoogleLogo />
+              通过 Google 登录
             </button>
           </div>
-        </form>
-        
-        {/* 第三方登录分隔线 */}
-        <div className="my-6">
-          <div className="relative">
-            <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-ring"></div>
-            </div>
-            <div className="relative flex justify-center text-sm">
-              <span className="px-3 bg-surface text-muted-contrast rounded-full">或使用第三方登录</span>
-            </div>
+
+          <div className="text-center mt-6">
+            <p className="text-sm text-muted-contrast">
+              还没有账户？
+              <a href="#" className="font-semibold text-brand-2 hover:text-brand-1 transition duration-200 focus:outline-none focus:ring-2 focus:ring-accent rounded">
+                立即注册
+              </a>
+            </p>
           </div>
-        </div>
-        
-        {/* 第三方登录按钮 */}
-        <div className="space-y-3">
-          <button 
-            type="button" 
-            className="w-full flex items-center justify-center py-3 px-4 border border-ring shadow-sm text-sm font-medium rounded-lg bg-white text-black hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition duration-300 transform hover:-translate-y-0.5"
-            aria-label="通过 Apple 登录"
-          >
-            <AppleLogo />
-            通过 Apple 登录
-          </button>
-          
-          <button 
-            type="button" 
-            className="w-full flex items-center justify-center py-3 px-4 border border-blue-500 shadow-sm text-sm font-medium rounded-lg bg-white text-blue-500 hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-300 transform hover:-translate-y-0.5"
-            aria-label="通过 Google 登录"
-          >
-            <GoogleLogo />
-            通过 Google 登录
-          </button>
-        </div>
-        
-        {/* 注册链接 */}
-        <div className="text-center mt-6">
-          <p className="text-sm text-muted-contrast">
-            还没有账户？
-            <a href="#" className="font-semibold text-brand-2 hover:text-brand-1 transition duration-200 focus:outline-none focus:ring-2 focus:ring-accent rounded">
-              立即注册
-            </a>
-          </p>
         </div>
       </div>
     </div>
   )
 }
 
-export default LoginPage
+export default LoginSheet

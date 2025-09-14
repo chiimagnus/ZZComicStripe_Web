@@ -5,7 +5,6 @@ import IOSPage from './IOSPage'
 import TeamPage from './TeamPage'
 import ChangelogPage from './ChangelogPage'
 import ContactPage from './ContactPage'
-import LoginPage from './LoginPage'
 import { useLocation } from 'react-router-dom'
 
 export function RouteAwareBookFlip(): JSX.Element {
@@ -16,7 +15,6 @@ export function RouteAwareBookFlip(): JSX.Element {
     { id: 'team', element: <TeamPage /> },
     { id: 'changelog', element: <ChangelogPage /> },
     { id: 'contact', element: <ContactPage /> },
-    { id: 'login', element: <LoginPage /> },
   ]
 
   const location = useLocation()
@@ -31,8 +29,6 @@ export function RouteAwareBookFlip(): JSX.Element {
       return 6 // 更新日志页面的索引（与idToIndex映射保持一致）
     } else if (location.pathname.includes('/contact')) {
       return 8 // 联系方式页面的索引（与idToIndex映射保持一致）
-    } else if (location.pathname.includes('/login')) {
-      return 10 // 登录页面的索引（与idToIndex映射保持一致）
     } else {
       return 0 // 默认首页索引（与idToIndex映射保持一致）
     }
