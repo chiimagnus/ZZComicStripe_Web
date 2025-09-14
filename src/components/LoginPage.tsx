@@ -1,6 +1,6 @@
 import type { JSX, FormEvent } from 'react'
 import { X, Github } from 'lucide-react'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 // Apple Logo SVG Component
 const AppleLogo = () => (
@@ -28,9 +28,15 @@ interface LoginSheetProps {
 }
 
 function LoginSheet({ open, onClose }: LoginSheetProps): JSX.Element | null {
+  const [isSubmitting, setIsSubmitting] = useState(false)
+
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault()
+    // 简单的提交反馈：显示加载并在短时间后恢复
+    if (isSubmitting) return
+    setIsSubmitting(true)
     console.log('登录表单提交')
+    setTimeout(() => setIsSubmitting(false), 900)
   }
 
   useEffect(() => {
@@ -76,13 +82,28 @@ function LoginSheet({ open, onClose }: LoginSheetProps): JSX.Element | null {
             </div>
 
             <div className="flex items-center justify-center gap-4">
-              <button type="button" aria-label="Apple" className="w-24 h-12 rounded-lg bg-white flex items-center justify-center shadow-sm">
+              <button
+                type="button"
+                aria-label="Apple"
+                className="w-24 h-12 rounded-lg bg-white flex items-center justify-center shadow-sm transition transform hover:-translate-y-0.5 active:scale-95 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent"
+                onClick={() => console.log('Sign in with Apple')}
+              >
                 <AppleLogo />
               </button>
-              <button type="button" aria-label="Github" className="w-24 h-12 rounded-lg bg-white/5 flex items-center justify-center shadow-sm text-white">
+              <button
+                type="button"
+                aria-label="Github"
+                className="w-24 h-12 rounded-lg bg-white flex items-center justify-center shadow-sm transition transform hover:-translate-y-0.5 active:scale-95 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent"
+                onClick={() => console.log('Sign in with Github')}
+              >
                 <Github className="h-6 w-6" />
               </button>
-              <button type="button" aria-label="Google" className="w-24 h-12 rounded-lg bg-white flex items-center justify-center shadow-sm">
+              <button
+                type="button"
+                aria-label="Google"
+                className="w-24 h-12 rounded-lg bg-white flex items-center justify-center shadow-sm transition transform hover:-translate-y-0.5 active:scale-95 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent"
+                onClick={() => console.log('Sign in with Google')}
+              >
                 <GoogleLogo />
               </button>
             </div>
@@ -107,7 +128,14 @@ function LoginSheet({ open, onClose }: LoginSheetProps): JSX.Element | null {
                 className="appearance-none rounded-lg block w-full px-4 py-3 border border-ring placeholder-muted text-text focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent sm:text-sm transition duration-200 bg-glass backdrop-blur-sm"
               />
 
-              <button type="submit" className="w-full bg-white text-black rounded-lg py-3 font-medium shadow-md">Send Magic Link</button>
+              <button
+                type="submit"
+                className="w-full bg-white text-black rounded-lg py-3 font-medium shadow-md transition transform active:scale-95 disabled:opacity-60"
+                aria-busy={isSubmitting}
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? 'Sending…' : 'Send Magic Link'}
+              </button>
             </form>
 
             <button type="button" className="w-full border rounded-lg py-3 text-sm">Don't have an account? Sign up →</button>
