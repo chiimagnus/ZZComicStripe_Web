@@ -56,7 +56,7 @@ function LoginPage(): JSX.Element {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-brand-3/30 via-surface to-brand-1/20">
+    <div className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-[#DCC6A0]">
       <div className="max-w-md w-full space-y-8 glass-card rounded-2xl p-8 shadow-xl bg-white/80 backdrop-blur-sm">
         <div>
           <h2 className="mt-6 text-center text-3xl font-bold text-brand-2 heading-glow">登录您的账户</h2>
