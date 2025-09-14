@@ -64,7 +64,7 @@ function LoginSheet({ open, onClose }: LoginSheetProps): JSX.Element | null {
           aria-label="登录"
         >
           <button
-            className="absolute right-3 top-3 rounded-md p-1 text-neutral-600 hover:bg-neutral-100"
+            className="absolute left-3 top-3 rounded-md p-1 text-neutral-600 hover:bg-neutral-100"
             aria-label="关闭"
             onClick={onClose}
           >
