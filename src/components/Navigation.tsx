@@ -16,7 +16,6 @@ function Navigation({ onLoginClick }: NavigationProps) {
     { name: '团队介绍', href: '/ZZComicStripe_Web/team' },
     { name: '更新日志', href: '/ZZComicStripe_Web/changelog' },
     { name: '联系方式', href: '/ZZComicStripe_Web/contact' },
-    { name: '登录', href: '/ZZComicStripe_Web/login' },
   ]
 
   useEffect(() => {
@@ -86,7 +85,7 @@ function Navigation({ onLoginClick }: NavigationProps) {
             <span className="whitespace-nowrap">登录</span>
           </Link>
           <a
-            href="#"
+            href="/ZZComicStripe_Web/login"
             className="btn-primary inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm flex-shrink-0"
             role="button"
             tabIndex={0}
