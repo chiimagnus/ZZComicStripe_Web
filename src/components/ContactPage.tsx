@@ -52,45 +52,6 @@ function ContactPage(): JSX.Element {
               </div>
             </div>
           </div>
-          
-          <div className="glass-card p-6 rounded-2xl mt-8">
-            <h2 className="text-2xl font-bold mb-4">反馈表单</h2>
-            <form className="space-y-4">
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium mb-1">姓名</label>
-                <input 
-                  type="text" 
-                  id="name" 
-                  className="w-full px-4 py-2 rounded-lg border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="请输入您的姓名"
-                />
-              </div>
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium mb-1">邮箱</label>
-                <input 
-                  type="email" 
-                  id="email" 
-                  className="w-full px-4 py-2 rounded-lg border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="请输入您的邮箱"
-                />
-              </div>
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium mb-1">消息</label>
-                <textarea 
-                  id="message" 
-                  rows={4}
-                  className="w-full px-4 py-2 rounded-lg border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="请输入您的消息"
-                ></textarea>
-              </div>
-              <button 
-                type="submit" 
-                className="btn-primary px-6 py-2 rounded-lg font-medium"
-              >
-                发送消息
-              </button>
-            </form>
-          </div>
         </div>
       </ContentWrapper>
     </section>
