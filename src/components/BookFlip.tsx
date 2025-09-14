@@ -5,13 +5,12 @@ import { useFlipBook } from '../contexts/FlipBookContext'
 
 interface PageHalfProps {
   id: string
-  side: 'left' | 'right'
   children: ReactNode
 }
 
-const PageHalf = forwardRef<HTMLDivElement, PageHalfProps>(({ id, side, children }, ref) => {
-  const translateX = side === 'left' ? '0%' : '-50%'
-  const spreadWidth = '200%'
+const PageHalf = forwardRef<HTMLDivElement, PageHalfProps>(({ id, children }, ref) => {
+  const translateX = '0%'
+  const spreadWidth = '100%'
   return (
     <div ref={ref as any} data-density="soft" id={id} style={pageStyle as CSSProperties}>
       <div style={halfViewportStyle as CSSProperties}>
@@ -96,7 +95,7 @@ export function BookFlip({
   }, [])
 
   const sizeProps = useMemo(() => {
-    const pageWidth = Math.max(320, Math.floor(viewport.w / 2))
+    const pageWidth = Math.max(320, viewport.w)
     const pageHeight = Math.max(320, viewport.h)
     return {
       // 固定模式：每页宽=视口宽/2，页高=视口高，铺满角到角
@@ -110,7 +109,7 @@ export function BookFlip({
       maxHeight: pageHeight,
       drawShadow: true,
       flippingTime: 800,
-      usePortrait: false,
+      usePortrait: true,
       startZIndex: 0,
       autoSize: false,
       maxShadowOpacity: 0.4,
@@ -136,14 +135,11 @@ export function BookFlip({
         style={{ width: '100%', height: '100%' }}
         ref={ref}
       >
-        {pages.flatMap(({ id, element }) => [
-          <PageHalf key={`${id}-L`} id={`${id}-left`} side="left">
+        {pages.map(({ id, element }) => (
+          <PageHalf key={`${id}-single`} id={`${id}-single`}>
             {element}
-          </PageHalf>,
-          <PageHalf key={`${id}-R`} id={`${id}-right`} side="right">
-            {element}
-          </PageHalf>,
-        ])}
+          </PageHalf>
+        ))}
       </HTMLFlipBook>
     </div>
   )

@@ -42,6 +42,8 @@ export function FlipBookProvider({
   children: ReactNode
 }) {
   const controllerRef = useRef<HTMLFlipBookRefLike>(null)
+  // 当 book 实例尚未注册时，缓存待执行的跳页请求
+  const pendingFlipRef = useRef<{ id: string; corner: 'top' | 'bottom' } | null>(null)
 
   const api = useMemo<FlipBookContextValue>(() => {
     const normalizeId = (id: string) => id.replace(/^#/, '')
@@ -50,11 +52,26 @@ export function FlipBookProvider({
       idToIndex,
       register: (ref) => {
         controllerRef.current = ref
+        // 注册后执行任何挂起的跳页请求
+        const pending = pendingFlipRef.current
+        if (pending) {
+          const idx = idToIndex[normalizeId(pending.id)]
+          if (typeof idx === 'number') {
+            controllerRef.current?.pageFlip?.()?.flip(idx, pending.corner)
+          }
+          pendingFlipRef.current = null
+        }
       },
       goToId: (id, corner = 'top') => {
         const idx = idToIndex[normalizeId(id)]
         if (typeof idx === 'number') {
-          controllerRef.current?.pageFlip?.()?.flip(idx, corner)
+          const pageFlipInstance = controllerRef.current?.pageFlip?.()
+          if (pageFlipInstance) {
+            pageFlipInstance.flip(idx, corner)
+          } else {
+            // 翻书实例尚未准备好，缓存请求以便 register 时执行
+            pendingFlipRef.current = { id: normalizeId(id), corner }
+          }
         }
       },
       flipNext: (corner = 'top') => {
@@ -76,6 +93,9 @@ export function FlipBookProvider({
           const pageFlipInstance = controllerRef.current?.pageFlip?.()
           if (pageFlipInstance) {
             pageFlipInstance.flip(idx, 'top')
+          } else {
+            // 缓存事件驱动的跳页请求
+            pendingFlipRef.current = { id: detail.id, corner: 'top' }
           }
         }
       }
