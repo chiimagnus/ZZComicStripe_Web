@@ -39,7 +39,13 @@ function Navigation() {
     <nav className="fixed left-1/2 top-2 z-20 w-[calc(100%-40px)] -translate-x-1/2 md:w-[calc(100%-120px)] lg:w-[900px] xl:w-[1000px] min-w-[300px] overflow-visible" aria-label="主导航">
       <ContentWrapper className="glass-capsule mx-auto flex items-center justify-between gap-2 sm:gap-4 rounded-2xl px-2 py-2 sm:px-4 overflow-visible">
         <div className="flex items-center gap-2 pr-2 flex-shrink-0 min-w-0">
-          <Link to="/ZZComicStripe_Web/" className="flex-shrink-0">
+          <Link to="/ZZComicStripe_Web/" className="flex-shrink-0" onClick={(e) => {
+              if (window.innerWidth >= 768) {
+                e.preventDefault()
+                smoothScrollTo('home')
+              }
+            }}
+          >
             <img
               src="/ZZComicStripe_Web/icon.png"
               alt="吱吱连环画 Logo"
@@ -51,6 +57,12 @@ function Navigation() {
           <Link 
             to="/ZZComicStripe_Web/"
             className="text-sm font-semibold hover:text-neutral-900 whitespace-nowrap overflow-hidden text-ellipsis"
+            onClick={(e) => {
+              if (window.innerWidth >= 768) {
+                e.preventDefault()
+                smoothScrollTo('home')
+              }
+            }}
           >
             吱吱连环画
           </Link>
