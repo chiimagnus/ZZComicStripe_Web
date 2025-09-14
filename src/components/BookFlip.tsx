@@ -1,7 +1,7 @@
 import type { CSSProperties, JSX, ReactNode } from 'react'
 import { forwardRef, useEffect, useMemo, useRef, useState } from 'react'
 import HTMLFlipBook from 'react-pageflip'
-import { useFlipBook } from './flip/FlipBookContext'
+import { useFlipBook } from '../flip/FlipBookContext'
 
 interface PageHalfProps {
   id: string

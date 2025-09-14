@@ -1,10 +1,10 @@
 import type { JSX } from 'react'
 import { useCallback, useRef } from 'react'
 import { BookFlip } from './BookFlip'
-import HeroSection from '../../pages/HeroSection'
-import IOSPage from '../../pages/IOSPage'
-import TeamPage from '../../pages/TeamPage'
-import ContactPage from '../../pages/ContactPage'
+import HeroSection from '../pages/HeroSection'
+import IOSPage from '../pages/IOSPage'
+import TeamPage from '../pages/TeamPage'
+import ContactPage from '../pages/ContactPage'
 import { useLocation, useNavigate } from 'react-router-dom'
 
 export function RouteAwareBookFlip(): JSX.Element {
