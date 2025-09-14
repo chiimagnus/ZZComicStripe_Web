@@ -52,9 +52,11 @@ const spreadStyle: Partial<CSSProperties> = {
 export function BookFlip({
   pages,
   initialPageIndex = 0,
+  onPageIndexChange,
 }: {
   pages: { id: string; element: JSX.Element }[]
   initialPageIndex?: number
+  onPageIndexChange?: (pageIndex: number) => void
 }): JSX.Element {
   const { register } = useFlipBook()
   const ref = useRef<any>(null)
@@ -135,6 +137,13 @@ export function BookFlip({
         className="zz-bookflip"
         style={{ width: '100%', height: '100%' }}
         ref={ref}
+        onFlip={(e: any) => {
+          // react-pageflip 在事件的 data 字段中提供当前页索引
+          const newIndex = typeof e?.data === 'number' ? e.data : undefined
+          if (typeof newIndex === 'number') {
+            onPageIndexChange?.(newIndex)
+          }
+        }}
       >
         {pages.flatMap(({ id, element }) => [
           <PageHalf key={`${id}-L`} id={`${id}-left`} side="left">

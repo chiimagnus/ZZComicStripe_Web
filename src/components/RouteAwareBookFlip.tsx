@@ -4,7 +4,7 @@ import HeroSection from './HeroSection'
 import IOSPage from './IOSPage'
 import TeamPage from './TeamPage'
 import ContactPage from './ContactPage'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 export function RouteAwareBookFlip(): JSX.Element {
   // 定义页面顺序，与idToIndex映射保持一致
@@ -16,6 +16,7 @@ export function RouteAwareBookFlip(): JSX.Element {
   ]
 
   const location = useLocation()
+  const navigate = useNavigate()
 
   // 根据当前路由确定初始页面索引
   const getInitialPageIndex = () => {
@@ -30,5 +31,16 @@ export function RouteAwareBookFlip(): JSX.Element {
     }
   }
 
-  return <BookFlip pages={pages} initialPageIndex={getInitialPageIndex()} />
+  const handlePageIndexChange = (pageIndex: number) => {
+    // 每个逻辑页面由两页组成（左右页），因此使用 Math.floor(pageIndex / 2) 来映射
+    const logicalIndex = Math.floor(pageIndex / 2)
+    const page = pages[logicalIndex]
+    if (page) {
+      const path = page.id === 'home' ? '/ZZComicStripe_Web/' : `/ZZComicStripe_Web/${page.id}`
+      // 使用 replaceBehavior: false 以保留浏览历史
+      navigate(path)
+    }
+  }
+
+  return <BookFlip pages={pages} initialPageIndex={getInitialPageIndex()} onPageIndexChange={handlePageIndexChange} />
 }
