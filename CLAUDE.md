@@ -10,10 +10,13 @@ This is a web application for "吱吱连环画" (ZZ Comic Stripe), a platform fo
 - Vite as the build tool
 - Tailwind CSS v4 for styling
 - Lucide React for icons
+- React Router for navigation
+- React PageFlip for book flip effect
 
 ## Project Structure
 - `src/` - Main source code
   - `components/` - React components (Navigation, HeroSection, IOSPage)
+  - `contexts/` - React contexts for state management
   - `styles/` - CSS files (theme.css)
 - `public/` - Static assets
 - `dist/` - Build output
@@ -33,8 +36,17 @@ This is a web application for "吱吱连环画" (ZZ Comic Stripe), a platform fo
 - Implements a book flip effect using react-pageflip library
 - Uses context API for state management of the flip book functionality
 - Navigation uses smooth scrolling that triggers page flips instead of traditional scrolling
+- Implements route-aware book flipping with React Router integration
+- Mobile-responsive design with different layouts for mobile and desktop
 
 ## Deployment
 - Base path configured as `/ZZComicStripe_Web/`
 - CSS code splitting enabled
 - Manual chunking for vendor libraries
+
+## Important Implementation Details
+- The book flip effect is implemented using the react-pageflip library
+- Each logical page is represented as two physical pages (left and right halves)
+- The FlipBookContext provides centralized control over the book flip functionality
+- Route changes are synchronized with book page flips
+- Mobile devices use a different layout without the book flip effect
