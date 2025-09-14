@@ -1,4 +1,5 @@
 import type { JSX } from 'react'
+import { useCallback, useRef } from 'react'
 import { BookFlip } from './BookFlip'
 import HeroSection from './HeroSection'
 import IOSPage from './IOSPage'
@@ -31,16 +32,36 @@ export function RouteAwareBookFlip(): JSX.Element {
     }
   }
 
-  const handlePageIndexChange = (pageIndex: number) => {
+  // 去抖：快速翻页时不频繁更新路由，等用户停止翻页后再跳转
+  const navigateTimerRef = useRef<number | null>(null)
+  const pendingPathRef = useRef<string | null>(null)
+  const DEBOUNCE_MS = 160
+
+  const handlePageIndexChange = useCallback((pageIndex: number) => {
     // 每个逻辑页面由两页组成（左右页），因此使用 Math.floor(pageIndex / 2) 来映射
     const logicalIndex = Math.floor(pageIndex / 2)
     const page = pages[logicalIndex]
-    if (page) {
-      const path = page.id === 'home' ? '/ZZComicStripe_Web/' : `/ZZComicStripe_Web/${page.id}`
-      // 使用 replaceBehavior: false 以保留浏览历史
-      navigate(path)
+    if (!page) return
+
+    const path = page.id === 'home' ? '/ZZComicStripe_Web/' : `/ZZComicStripe_Web/${page.id}`
+
+    // 重置定时器（去抖）
+    if (navigateTimerRef.current) {
+      window.clearTimeout(navigateTimerRef.current)
+      navigateTimerRef.current = null
     }
-  }
+
+    pendingPathRef.current = path
+    navigateTimerRef.current = window.setTimeout(() => {
+      const pending = pendingPathRef.current
+      // 仅在路径确实发生变化时才 navigate
+      if (pending && pending !== location.pathname) {
+        navigate(pending)
+      }
+      navigateTimerRef.current = null
+      pendingPathRef.current = null
+    }, DEBOUNCE_MS)
+  }, [pages, navigate, location.pathname])
 
   return <BookFlip pages={pages} initialPageIndex={getInitialPageIndex()} onPageIndexChange={handlePageIndexChange} />
 }
