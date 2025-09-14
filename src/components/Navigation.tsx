@@ -16,6 +16,7 @@ function Navigation({ onLoginClick }: NavigationProps) {
     { name: '团队介绍', href: '/ZZComicStripe_Web/team' },
     { name: '更新日志', href: '/ZZComicStripe_Web/changelog' },
     { name: '联系方式', href: '/ZZComicStripe_Web/contact' },
+    { name: '登录', href: '/ZZComicStripe_Web/login' },
   ]
 
   useEffect(() => {
@@ -76,19 +77,14 @@ function Navigation({ onLoginClick }: NavigationProps) {
         </ul>
 
         <div className="ml-auto flex items-center gap-2">
-          <a
-            href="#"
+          <Link
+            to="/ZZComicStripe_Web/login"
             className="btn-ghost hidden items-center gap-1 rounded-xl px-3 py-2 text-sm md:inline-flex flex-shrink-0"
-            onClick={(e) => {
-              e.preventDefault()
-              onLoginClick?.()
-            }}
             role="button"
-            tabIndex={0}
           >
             <LogIn className="h-4 w-4" aria-hidden="true" />
             <span className="whitespace-nowrap">登录</span>
-          </a>
+          </Link>
           <a
             href="#"
             className="btn-primary inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm flex-shrink-0"
@@ -134,19 +130,15 @@ function Navigation({ onLoginClick }: NavigationProps) {
               </li>
             ))}
             <li className="pt-2 border-t border-neutral-200" role="none">
-              <a
-                href="#"
+              <Link
+                to="/ZZComicStripe_Web/login"
                 className="btn-ghost flex items-center gap-1 rounded-xl px-3 py-2 text-sm w-full"
-                onClick={(e) => {
-                  e.preventDefault()
-                  onLoginClick?.()
-                  setIsMenuOpen(false)
-                }}
+                onClick={() => setIsMenuOpen(false)}
                 role="menuitem"
               >
                 <LogIn className="h-4 w-4" aria-hidden="true" />
                 <span>登录</span>
-              </a>
+              </Link>
             </li>
           </ul>
         </div>

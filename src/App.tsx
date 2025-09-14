@@ -4,7 +4,7 @@ import { FlipBookProvider } from './contexts/FlipBookContext'
 import { RouteAwareBookFlip } from './components/RouteAwareBookFlip'
 import { MobileRouteContent } from './components/MobileRouteContent'
 import { useEffect, useState } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { useFlipBook } from './contexts/FlipBookContext'
 
 // 创建一个组件来监听路由变化并触发翻页
@@ -23,6 +23,8 @@ function RouteChangeListener() {
       pageId = 'changelog'
     } else if (location.pathname.includes('/contact')) {
       pageId = 'contact'
+    } else if (location.pathname.includes('/login')) {
+      pageId = 'login'
     }
     
     // 触发翻页到指定页面
@@ -33,8 +35,10 @@ function RouteChangeListener() {
 }
 
 function App(): JSX.Element {
+  const navigate = useNavigate()
+  
   const handleLoginClick = () => {
-    console.log('Login clicked')
+    navigate('/ZZComicStripe_Web/login')
   }
 
   // 每个逻辑页面映射到双页（左右相同内容），因此索引为偶数页
@@ -44,6 +48,7 @@ function App(): JSX.Element {
     team: 4,
     changelog: 6,
     contact: 8,
+    login: 10,
   } as const
 
   const [isMobile, setIsMobile] = useState(false)

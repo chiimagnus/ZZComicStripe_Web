@@ -1,5 +1,6 @@
 import { createBrowserRouter} from 'react-router-dom'
 import App from './App'
+import LoginPage from './components/LoginPage'
 
 // 创建浏览器路由器
 const router = createBrowserRouter([
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
       {
         path: 'contact',
         element: <div data-page-id="contact" />
+      },
+      {
+        path: 'login',
+        element: <LoginPage />
       }
     ]
   }
