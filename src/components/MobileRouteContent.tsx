@@ -3,7 +3,6 @@ import { useLocation } from 'react-router-dom'
 import HeroSection from './HeroSection'
 import IOSPage from './IOSPage'
 import TeamPage from './TeamPage'
-import ChangelogPage from './ChangelogPage'
 import ContactPage from './ContactPage'
 
 export function MobileRouteContent(): JSX.Element {
@@ -14,8 +13,6 @@ export function MobileRouteContent(): JSX.Element {
     return <IOSPage />
   } else if (location.pathname.includes('/team')) {
     return <TeamPage />
-  } else if (location.pathname.includes('/changelog')) {
-    return <ChangelogPage />
   } else if (location.pathname.includes('/contact')) {
     return <ContactPage />
   } else {

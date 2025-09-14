@@ -24,8 +24,6 @@ function RouteChangeListener() {
       pageId = 'ios'
     } else if (location.pathname.includes('/team')) {
       pageId = 'team'
-    } else if (location.pathname.includes('/changelog')) {
-      pageId = 'changelog'
     } else if (location.pathname.includes('/contact')) {
       pageId = 'contact'
     }
@@ -44,8 +42,7 @@ function App(): JSX.Element {
     home: 0,
     ios: 2,
     team: 4,
-    changelog: 6,
-    contact: 8,
+    contact: 6,
   } as const
 
   const [isMobile, setIsMobile] = useState(false)

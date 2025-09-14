@@ -10,7 +10,6 @@ function Navigation() {
   const menuItems = [
     { name: 'iOS', href: '/ZZComicStripe_Web/ios' },
     { name: '团队介绍', href: '/ZZComicStripe_Web/team' },
-    { name: '更新日志', href: '/ZZComicStripe_Web/changelog' },
     { name: '联系方式', href: '/ZZComicStripe_Web/contact' },
   ]
 
