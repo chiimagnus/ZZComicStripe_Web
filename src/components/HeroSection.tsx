@@ -1,4 +1,4 @@
-import { ChevronsDown, ArrowRight } from "lucide-react"
+import { ChevronsDown, ArrowRight, ExternalLink } from "lucide-react"
 import { useNavigate } from 'react-router-dom'
 import ContentWrapper from './ContentWrapper'
 
@@ -52,9 +52,10 @@ function HeroSection({}: HeroSectionProps) {
             href="https://ce2v5s31zi.feishu.cn/share/base/form/shrcnOuOF1XMGI4rC81tuR5sEgc"
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-primary inline-flex items-center justify-center rounded-full px-6 py-3 text-base font-semibold"
+            className="btn-primary group inline-flex items-center justify-center rounded-full px-6 py-3 text-base font-semibold"
           >
             上传视频
+            <ExternalLink className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" aria-hidden />
           </a>
           <a
             href="#learn"
