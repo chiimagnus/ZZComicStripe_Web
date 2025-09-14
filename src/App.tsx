@@ -5,35 +5,7 @@ import { RouteAwareBookFlip } from './components/RouteAwareBookFlip'
 import { MobileRouteContent } from './components/MobileRouteContent'
 import { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { useFlipBook } from './contexts/FlipBookContext'
 import LoginSheet from './components/LoginPage'
-
-// 创建一个组件来监听路由变化并触发翻页
-function RouteChangeListener() {
-  const location = useLocation()
-  const { goToId } = useFlipBook()
-  
-  useEffect(() => {
-    // 根据路由路径确定要翻到的页面ID
-    if (location.pathname.includes('/login')) {
-      // 打开登录时不改变当前翻页位置
-      return
-    }
-    let pageId = 'home'
-    if (location.pathname.includes('/ios')) {
-      pageId = 'ios'
-    } else if (location.pathname.includes('/team')) {
-      pageId = 'team'
-    } else if (location.pathname.includes('/contact')) {
-      pageId = 'contact'
-    }
-    
-    // 触发翻页到指定页面
-    goToId(pageId)
-  }, [location, goToId])
-  
-  return null // 这个组件不渲染任何内容，只用于监听路由变化
-}
 
 function App(): JSX.Element {
 
@@ -50,13 +22,7 @@ function App(): JSX.Element {
   const navigate = useNavigate()
   const isLoginOpen = location.pathname.includes('/login')
   const handleCloseLogin = () => {
-    // 关闭时回退到去掉 /login 的路径
-    const basePath = location.pathname.replace(/\/?login$/, '') || '/ZZComicStripe_Web/'
-    if (basePath !== location.pathname) {
-      navigate(basePath)
-    } else {
-      navigate(-1)
-    }
+    navigate(-1)
   }
   useEffect(() => {
     const fn = () => setIsMobile(window.innerWidth < 768)
@@ -81,7 +47,6 @@ function App(): JSX.Element {
       ) : (
         <FlipBookProvider idToIndex={idToIndex}>
           <Navigation />
-          <RouteChangeListener />
           <RouteAwareBookFlip />
         </FlipBookProvider>
       )}
