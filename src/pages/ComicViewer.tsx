@@ -1,6 +1,6 @@
 import type { JSX } from 'react'
 import { useEffect, useMemo, useState } from 'react'
-import { useSearchParams, Link } from 'react-router-dom'
+import { useSearchParams } from 'react-router-dom'
 import { FlipBookProvider } from '../flip/FlipBookContext'
 import { BookFlip } from '../components/BookFlip'
 
@@ -160,7 +160,17 @@ export default function ComicViewer(): JSX.Element {
         <div className="mx-auto max-w-4xl px-4 py-3 flex items-center justify-between">
           <h1 className="text-lg font-semibold text-brand-2">{pageTitle}</h1>
           <nav className="text-sm">
-            <Link className="underline" to="/ZZComicStripe_Web/">返回首页</Link>
+            <button
+              type="button"
+              className="underline"
+              onClick={() => {
+                // 返回到封面而不是离开阅览页
+                setShowCover(true)
+                window.scrollTo({ top: 0, behavior: 'smooth' })
+              }}
+            >
+              返回首页
+            </button>
           </nav>
         </div>
       </header>
