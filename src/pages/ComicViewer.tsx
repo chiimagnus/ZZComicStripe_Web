@@ -99,6 +99,7 @@ function extractPanels(json: unknown): { title?: string; summary?: string; panel
 export default function ComicViewer(): JSX.Element {
   const [params] = useSearchParams()
   const src = params.get('src') ?? ''
+  const demo = params.get('demo') === '1'
   const valid = isHttpUrl(src)
   const [loading, setLoading] = useState<boolean>(true)
   const [error, setError] = useState<string | null>(null)
@@ -106,6 +107,21 @@ export default function ComicViewer(): JSX.Element {
 
   useEffect(() => {
     let isMounted = true
+    if (demo) {
+      // 使用示例数据并直接返回
+      const sample = {
+        title: '示例连环画：回忆录',
+        summary: '这是一个用于调试的示例连环画，包含若干页示例图片与文字。',
+        panels: [
+          { imageUrl: '/ZZComicStripe_Web/public/mainview2.jpg', text: '第一页：故事开端。' },
+          { imageUrl: '/ZZComicStripe_Web/public/mainview2.jpg', text: '第二页：冲突与发展。' },
+          { imageUrl: '/ZZComicStripe_Web/public/mainview2.jpg', text: '第三页：温馨结尾。' },
+        ],
+      }
+      setData(sample as any)
+      setLoading(false)
+      return
+    }
     if (!valid) {
       setError('无效的链接：仅支持 http(s) 链接')
       setLoading(false)

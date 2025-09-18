@@ -10,6 +10,7 @@ interface ViewComicSheetProps {
 function ViewComicSheet({ open, onClose }: ViewComicSheetProps): JSX.Element | null {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [url, setUrl] = useState('')
+  const [demoMode, setDemoMode] = useState(false)
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault()
@@ -17,6 +18,11 @@ function ViewComicSheet({ open, onClose }: ViewComicSheetProps): JSX.Element | n
     setIsSubmitting(true)
     try {
       const target = url.trim()
+      if (demoMode) {
+        const viewerUrl = `/ZZComicStripe_Web/viewer?demo=1`
+        window.open(viewerUrl, '_blank', 'noopener,noreferrer')
+        return
+      }
       if (!target) return
       const encoded = encodeURIComponent(target)
       const viewerUrl = `/ZZComicStripe_Web/viewer?src=${encoded}`
@@ -78,6 +84,16 @@ function ViewComicSheet({ open, onClose }: ViewComicSheetProps): JSX.Element | n
                 onChange={(e) => setUrl(e.currentTarget.value)}
                 className="appearance-none rounded-lg block w-full px-4 py-3 border border-ring placeholder-muted text-text focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent sm:text-sm transition duration-200 bg-glass backdrop-blur-sm"
               />
+
+              <label className="flex items-center gap-3 text-sm">
+                <input
+                  type="checkbox"
+                  checked={demoMode}
+                  onChange={(e) => setDemoMode(e.currentTarget.checked)}
+                  className="w-4 h-4"
+                />
+                <span>开启调试示例（忽略输入链接并直接打开示例）</span>
+              </label>
 
               <button
                 type="submit"
