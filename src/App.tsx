@@ -6,6 +6,7 @@ import { MobileRouteContent } from './pages/MobileRouteContent'
 import { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import LoginSheet from './components/LoginPage'
+import ViewComicSheet from './components/ViewComicSheet'
 
 function App(): JSX.Element {
 
@@ -21,7 +22,11 @@ function App(): JSX.Element {
   const location = useLocation()
   const navigate = useNavigate()
   const isLoginOpen = location.pathname.includes('/login')
+  const isViewComicOpen = location.pathname.includes('/view-comic')
   const handleCloseLogin = () => {
+    navigate(-1)
+  }
+  const handleCloseViewComic = () => {
     navigate(-1)
   }
   useEffect(() => {
@@ -52,6 +57,7 @@ function App(): JSX.Element {
       )}
       {/* 登录 Sheet 挂载在全局 */}
       <LoginSheet open={isLoginOpen} onClose={handleCloseLogin} />
+      <ViewComicSheet open={isViewComicOpen} onClose={handleCloseViewComic} />
       
       {/* 页脚 - 隐藏 */}
       {/* <Footer /> */}

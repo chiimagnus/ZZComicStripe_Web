@@ -24,6 +24,10 @@ const router = createBrowserRouter([
         element: <div data-page-id="contact" />
       },
       {
+        path: 'view-comic',
+        element: <div data-page-id="view-comic" />
+      },
+      {
         path: 'login',
         element: <div data-page-id="login" />
       }

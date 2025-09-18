@@ -80,7 +80,7 @@ function ViewComicSheet({ open, onClose }: ViewComicSheetProps): JSX.Element | n
                 name="comic-url"
                 type="text"
                 required
-                placeholder="Enter link or path, e.g. /comic/123 or https://..."
+                placeholder="Please enter link"
                 value={url}
                 onChange={(e) => setUrl(e.currentTarget.value)}
                 className="appearance-none rounded-lg block w-full px-4 py-3 border border-ring placeholder-muted text-text focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent sm:text-sm transition duration-200 bg-glass backdrop-blur-sm"
