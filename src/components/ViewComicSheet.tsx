@@ -15,21 +15,14 @@ function ViewComicSheet({ open, onClose }: ViewComicSheetProps): JSX.Element | n
     e.preventDefault()
     if (isSubmitting) return
     setIsSubmitting(true)
-    // 简单校验并导航到输入的链接（相对或绝对 URL 均支持）
     try {
       const target = url.trim()
-      if (target) {
-        // 如果是锚点或相对链接，直接改变 location
-        if (target.startsWith('#') || target.startsWith('/') || /^[a-zA-Z]+:\/\//.test(target)) {
-          window.location.href = target
-        } else {
-          // 否则当作相对路径处理
-          window.location.href = `/${target}`
-        }
-      }
+      if (!target) return
+      const encoded = encodeURIComponent(target)
+      const viewerUrl = `/ZZComicStripe_Web/viewer?src=${encoded}`
+      window.open(viewerUrl, '_blank', 'noopener,noreferrer')
     } finally {
-      // 保持短暂的 loading 体验
-      setTimeout(() => setIsSubmitting(false), 600)
+      setTimeout(() => setIsSubmitting(false), 400)
     }
   }
 

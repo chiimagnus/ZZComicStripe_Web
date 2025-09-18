@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import LoginSheet from './components/LoginPage'
 import ViewComicSheet from './components/ViewComicSheet'
+import ComicViewer from './pages/ComicViewer'
 
 function App(): JSX.Element {
 
@@ -23,6 +24,7 @@ function App(): JSX.Element {
   const navigate = useNavigate()
   const isLoginOpen = location.pathname.includes('/login')
   const isViewComicOpen = location.pathname.includes('/view-comic')
+  const isViewerPage = location.pathname.includes('/viewer')
   const handleCloseLogin = () => {
     navigate(-1)
   }
@@ -35,6 +37,11 @@ function App(): JSX.Element {
     window.addEventListener('resize', fn)
     return () => window.removeEventListener('resize', fn)
   }, [])
+
+  if (isViewerPage) {
+    // 专用阅览页：独立渲染，不进入主站壳层
+    return <ComicViewer />
+  }
 
   return (
     <div className="neon-frame">

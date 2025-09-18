@@ -1,5 +1,6 @@
 import { createBrowserRouter} from 'react-router-dom'
 import App from './App'
+import ComicViewer from './pages/ComicViewer'
 
 // 创建浏览器路由器
 const router = createBrowserRouter([
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
       {
         path: 'view-comic',
         element: <div data-page-id="view-comic" />
+      },
+      {
+        path: 'viewer',
+        element: <ComicViewer />
       },
       {
         path: 'login',
