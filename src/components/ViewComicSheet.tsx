@@ -92,7 +92,7 @@ function ViewComicSheet({ open, onClose }: ViewComicSheetProps): JSX.Element | n
                 aria-busy={isSubmitting}
                 disabled={isSubmitting}
               >
-                {isSubmitting ? 'Navigating…' : '打开链接'}
+                {isSubmitting ? 'Navigating…' : '查看'}
               </button>
             </form>
 
