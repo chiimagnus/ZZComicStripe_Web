@@ -1,18 +1,10 @@
 import { ChevronsDown, ArrowRight, ExternalLink } from "lucide-react"
-import { useNavigate } from 'react-router-dom'
 import ContentWrapper from '../components/ContentWrapper'
 
 interface HeroSectionProps {
 }
 
 function HeroSection({}: HeroSectionProps) {
-  const navigate = useNavigate()
-
-  const handleLearnMoreClick = (e: React.MouseEvent) => {
-    // 在所有设备上都导航到iOS页面
-    e.preventDefault()
-    navigate('/ZZComicStripe_Web/ios')
-  }
   return (
     <section
       className="relative isolate min-h-[100svh] w-full overflow-hidden text-center"
@@ -60,7 +52,6 @@ function HeroSection({}: HeroSectionProps) {
           <a
             href="#learn"
             className="btn-ghost group inline-flex items-center justify-center rounded-full px-6 py-3 text-base font-semibold transition-transform duration-300 hover:translate-x-1"
-            onClick={handleLearnMoreClick}
           >
             了解更多
             <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
