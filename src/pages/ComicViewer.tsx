@@ -105,7 +105,8 @@ export default function ComicViewer(): JSX.Element {
   const valid = isHttpUrl(src)
   const [loading, setLoading] = useState<boolean>(true)
   const [error, setError] = useState<string | null>(null)
-  const [data, setData] = useState<{ title?: string; summary?: string; panels: Panel[] }>({ panels: [] })
+  const [data, setData] = useState<{ title?: string; summary?: string; panels: Panel[]; coverImage?: string }>({ panels: [] })
+  const [showCover, setShowCover] = useState<boolean>(demo)
 
   useEffect(() => {
     let isMounted = true
@@ -119,8 +120,10 @@ export default function ComicViewer(): JSX.Element {
           { imageUrl: '/ZZComicStripe_Web/public/mainview2.jpg', text: '第二页：冲突与发展。' },
           { imageUrl: '/ZZComicStripe_Web/public/mainview2.jpg', text: '第三页：温馨结尾。' },
         ],
+        coverImage: '/ZZComicStripe_Web/public/mainview2.jpg',
       }
       setData(sample as any)
+      setShowCover(true)
       setLoading(false)
       return
     }
@@ -193,33 +196,54 @@ export default function ComicViewer(): JSX.Element {
 
         {data.panels.length > 0 && (
           <div style={{ height: '80vh' }}>
-            <FlipBookProvider idToIndex={Object.fromEntries(data.panels.map((_, i) => [`p${i}`, i * 2]))}>
-              <BookFlip
-                pages={data.panels.map((p, i) => ({
-                  id: `p${i}`,
-                  element: (
-                    <div className="flex flex-col items-center justify-center h-full p-6 bg-white">
-                      <div className="w-full h-full flex items-center justify-center">
-                        <img
-                          src={p.imageUrl}
-                          alt={`第 ${i + 1} 页图片`}
-                          loading="lazy"
-                          className="max-h-[70vh] max-w-full object-contain"
-                          crossOrigin="anonymous"
-                          referrerPolicy="no-referrer"
-                        />
-                      </div>
-                      {p.text && (
-                        <div className="mt-4 text-neutral-700 text-center max-w-[80%] whitespace-pre-wrap">
-                          {p.text}
+            {showCover && data.coverImage ? (
+              <div className="h-full flex flex-col items-center justify-center gap-6">
+                <div className="w-full max-w-2xl rounded-2xl overflow-hidden shadow-lg">
+                  <img src={data.coverImage} alt="画册封面" className="w-full h-[60vh] object-cover" />
+                </div>
+                <div className="text-center">
+                  <h2 className="text-2xl font-bold text-brand-2">{data.title || '画册封面'}</h2>
+                  {data.summary && <p className="mt-2 text-neutral-600">{data.summary}</p>}
+                </div>
+                <div className="w-full max-w-xs">
+                  <button
+                    type="button"
+                    className="w-full bg-white text-black rounded-lg py-3 font-medium shadow-md transition transform active:scale-95"
+                    onClick={() => setShowCover(false)}
+                  >
+                    翻开画册
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <FlipBookProvider idToIndex={Object.fromEntries(data.panels.map((_, i) => [`p${i}`, i * 2]))}>
+                <BookFlip
+                  pages={data.panels.map((p, i) => ({
+                    id: `p${i}`,
+                    element: (
+                      <div className="flex flex-col items-center justify-center h-full p-6 bg-white">
+                        <div className="w-full h-full flex items-center justify-center">
+                          <img
+                            src={p.imageUrl}
+                            alt={`第 ${i + 1} 页图片`}
+                            loading="lazy"
+                            className="max-h-[70vh] max-w-full object-contain"
+                            crossOrigin="anonymous"
+                            referrerPolicy="no-referrer"
+                          />
                         </div>
-                      )}
-                    </div>
-                  ),
-                }))}
-                initialPageIndex={0}
-              />
-            </FlipBookProvider>
+                        {p.text && (
+                          <div className="mt-4 text-neutral-700 text-center max-w-[80%] whitespace-pre-wrap">
+                            {p.text}
+                          </div>
+                        )}
+                      </div>
+                    ),
+                  }))}
+                  initialPageIndex={0}
+                />
+              </FlipBookProvider>
+            )}
           </div>
         )}
       </main>
