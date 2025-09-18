@@ -53,7 +53,7 @@ function HeroSection({}: HeroSectionProps) {
             href="#learn"
             className="btn-ghost group inline-flex items-center justify-center rounded-full px-6 py-3 text-base font-semibold transition-transform duration-300 hover:translate-x-1"
           >
-            了解更多
+            查看连环画
             <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
           </a>
         </div>
