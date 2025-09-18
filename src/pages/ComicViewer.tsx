@@ -111,7 +111,7 @@ export default function ComicViewer(): JSX.Element {
       // 使用示例数据并直接返回
       const sample = {
         title: '示例连环画：回忆录',
-        summary: '这是一个用于调试的示例连环画，包含若干页示例图片与文字。',
+        summary: undefined,
         panels: [
           { imageUrl: '/ZZComicStripe_Web/public/mainview2.jpg', text: '第一页：故事开端。' },
           { imageUrl: '/ZZComicStripe_Web/public/mainview2.jpg', text: '第二页：冲突与发展。' },
@@ -165,7 +165,7 @@ export default function ComicViewer(): JSX.Element {
           <p className="mb-6 text-neutral-600">{data.summary}</p>
         )}
 
-        {!valid && (
+        {!valid && !demo && (
           <div className="rounded-lg border p-4 bg-white/80">请输入有效的分享链接</div>
         )}
 
