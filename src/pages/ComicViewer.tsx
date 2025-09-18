@@ -1,6 +1,8 @@
 import type { JSX } from 'react'
 import { useEffect, useMemo, useState } from 'react'
 import { useSearchParams, Link } from 'react-router-dom'
+import { FlipBookProvider } from '../flip/FlipBookContext'
+import { BookFlip } from '../components/BookFlip'
 
 type Panel = {
   imageUrl: string
@@ -189,25 +191,37 @@ export default function ComicViewer(): JSX.Element {
           <div className="rounded-lg border p-4 bg-white/80">未解析到图片内容</div>
         )}
 
-        <div className="space-y-8">
-          {data.panels.map((p, idx) => (
-            <article key={idx} className="rounded-2xl overflow-hidden shadow-sm bg-white">
-              <img
-                src={p.imageUrl}
-                alt={`第 ${idx + 1} 页图片`}
-                loading="lazy"
-                className="w-full h-auto object-contain bg-neutral-100"
-                crossOrigin="anonymous"
-                referrerPolicy="no-referrer"
+        {data.panels.length > 0 && (
+          <div style={{ height: '80vh' }}>
+            <FlipBookProvider idToIndex={Object.fromEntries(data.panels.map((_, i) => [`p${i}`, i * 2]))}>
+              <BookFlip
+                pages={data.panels.map((p, i) => ({
+                  id: `p${i}`,
+                  element: (
+                    <div className="flex flex-col items-center justify-center h-full p-6 bg-white">
+                      <div className="w-full h-full flex items-center justify-center">
+                        <img
+                          src={p.imageUrl}
+                          alt={`第 ${i + 1} 页图片`}
+                          loading="lazy"
+                          className="max-h-[70vh] max-w-full object-contain"
+                          crossOrigin="anonymous"
+                          referrerPolicy="no-referrer"
+                        />
+                      </div>
+                      {p.text && (
+                        <div className="mt-4 text-neutral-700 text-center max-w-[80%] whitespace-pre-wrap">
+                          {p.text}
+                        </div>
+                      )}
+                    </div>
+                  ),
+                }))}
+                initialPageIndex={0}
               />
-              {p.text && (
-                <div className="p-4 text-neutral-700 whitespace-pre-wrap leading-relaxed">
-                  {p.text}
-                </div>
-              )}
-            </article>
-          ))}
-        </div>
+            </FlipBookProvider>
+          </div>
+        )}
       </main>
     </div>
   )
