@@ -99,7 +99,9 @@ function Navigation() {
             <span className="whitespace-nowrap">登录</span>
           </Link>
           <a
-            href="/ZZComicStripe_Web/login"
+            href="https://apps.apple.com/app/id6749136609"
+            target="_blank"
+            rel="noopener noreferrer"
             className="btn-primary inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm flex-shrink-0"
             role="button"
             tabIndex={0}
